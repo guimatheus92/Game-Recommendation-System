@@ -9,11 +9,11 @@
 <html>
 <head>
 <title>List of Games available</title>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" id="bootstrap-css" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" type="text/css">
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
-<link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
-<script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" href="//nightly.datatables.net/css/jquery.dataTables.css" type="text/css"/>
+<script type="text/javascript" src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
 </head>
 <!--https://www.w3schools.com/bootstrap/bootstrap_alerts.asp-->
     <div class="container">
@@ -75,38 +75,6 @@
         </form>
     </div>
 </div>
-  
-  <!-- Desativei essa paginação pois o DataTable já ativa automaticamente -->
-
-   <!-- <ul class="pagination justify-content-end">
-  {% if games.has_prev %}
-   <li class="page-item"><a class="page-link" href="{{ url_for('main.games', page_num=games.prev_num) }}">Previous</a></li>
-  {% else %}
-   <li class="page-item disabled"><span class="page-link">Previous</span>
-  {% endif %}
-   </li>
-    
-  {% for page in games.iter_pages(left_edge=3, right_edge=3) %}
-  {% if page %}
-   <li id="current" class="page-item">
-       <a class="page-link" href="{{ url_for('main.games', page_num=page) }}">
-           {{ page }}
-        </a>
-    </li>
-  {% else %}
-   <li class="page-item disabled" id="example_ellipsis">
-       <a href="#" class="page-link">
-           …
-       </a></li> 
-  {% endif %}
-  {% endfor %}
-  
-  {% if games.has_next %}
-   <li class="page-item"><a class="page-link" href="{{ url_for('main.games', page_num=games.next_num) }}">Next</a></li>
-  {% else %}
-   <li class="page-item disabled"><span class="page-link">Next</span>
-  {% endif %}
-   </ul> -->
 
 <style>
 table{
