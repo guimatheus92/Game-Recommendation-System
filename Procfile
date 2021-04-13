@@ -1,1 +1,1 @@
-web: gunicorn Game-Recommendation-System:app
+web: gunicorn __init__:create_app
