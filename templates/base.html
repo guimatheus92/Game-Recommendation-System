@@ -1,0 +1,95 @@
+<!-- templates/base.html -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flask Auth Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+</head>
+
+<body>
+    <section class="hero is-white is-fullheight">
+        <div class="hero-head">
+            <nav class="navbar is-white">
+                <div class="container">
+                    <div id="navbarMenuHeroA" class="navbar-menu">
+                        <div class="navbar-end">
+                            <a href="{{ url_for('main.index') }}" class="navbar-item">
+                                Home
+                            </a>
+                            <a href="{{ url_for('main.games', page_num=1) }}" class="navbar-item">
+                                Games
+                            </a>
+                            {% if not current_user.is_authenticated %}
+                                <a href="{{ url_for('auth.login') }}" class="navbar-item">
+                                    Login
+                                </a>
+                                <a href="{{ url_for('auth.signup') }}" class="navbar-item">
+                                    Sign Up
+                                </a>
+                            {% endif %}
+                            {% if current_user.is_authenticated %}
+                            <nav class="navbar" role="navigation" aria-label="dropdown navigation">
+                                <div class="navbar-item has-dropdown is-hoverable">
+                                    <div id="container">
+                                        <div id="name"></div>
+                                    </div>
+                              
+                                    <div class="navbar-dropdown">
+                                        {% if current_user.is_authenticated %}
+                                        <a href="{{ url_for('main.profile', page_num=1) }}" class="navbar-item">
+                                            Profile
+                                        </a>
+                                        {% endif %}
+                                        {% if current_user.is_authenticated %}
+                                        <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+                                            Logout
+                                        </a>
+                                        {% endif %}
+                                        <hr class="navbar-divider">
+                                        <div class="navbar-item"></div>
+                                    </div>
+                                </div>
+                            </nav>
+                            {% endif %}
+                        </div>
+                    </div>                
+            </nav>
+        </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+               {% block content %}
+               {% endblock %}
+            </div>
+        </div>
+    </section>
+</body>
+  
+<style>
+    #container {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background: #333;
+    }
+    #name {
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 12px;
+        line-height: 30px;
+    }
+</style>
+
+<script>
+    var name = "{{ first_name }}";
+    var lastname = "{{ last_name }}";
+    var initials = name.charAt(0)+""+lastname.charAt(0);
+    document.getElementById("name").innerHTML = initials;
+</script>
+
+</html>

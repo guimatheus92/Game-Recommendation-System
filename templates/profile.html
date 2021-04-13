@@ -1,0 +1,336 @@
+<!-- templates/profile.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+<script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+
+<p><h1>Profile</h1></p>
+<br clear="all" />
+<br clear="all" />
+<p><h3 style="text-align: left;">Recommendation</h3></p>
+<p style="text-align: left;">Game recommendation based on your profile:</p>
+
+<div class="container">
+    <div class="row">
+        <table id="recommendation_table" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Nº</th>
+                    <th>Game</th>
+                    <th>Genre</th>
+                    <th>Year Of Release</th>
+                    <th>Critic Score</th>
+                    <th>Score of Recommendation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x, value in recommendations_profile.iterrows() %}
+                <tr>                                        
+                    <td name="NM_GAME"> {{ x + 1}}</td>
+                    <td name="NM_GAME"> {{ value.NM_GAME}}</td>
+                    <td name="NM_GENRE"> {{ value.NM_GENRE}}</td>
+                    <td name="DT_YEAROFRELEASE"> {{ value.DT_YEAROFRELEASE}}</td>
+                    <td name="NR_CRITICSCORE">{{ value.NR_CRITICSCORE}}</td>
+                    <td name="Score">{{ value.Score}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Nº</th>
+                    <th>Game</th>
+                    <th>Genre</th>
+                    <th>Year Of Release</th>
+                    <th>Critic Score</th>
+                    <th>Score of Recommendation</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<br clear="all" />
+<div id="outer">
+    <div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="www.google.com.br" data-a2a-title="Game recommendation system">        
+        <a class="a2a_button_linkedin"></a>
+        <a class="a2a_button_facebook"></a>
+        <a class="a2a_button_whatsapp"></a>
+        <a class="a2a_button_twitter"></a>
+        <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+        <form method="GET" action="{{ url_for('main.donwloadrecommendation') }}">
+            {% if disable == True %}
+            <a>
+                <button type="donwload" class="btn btn-primary" disabled>
+                    Download
+                </button>
+            </a>
+            {% else %}
+            <a>
+                <button type="donwload" class="btn btn-primary">
+                    Download
+                </button>
+            </a>
+            {% endif %}
+        </form>
+    </div>
+    <script async src="https://static.addtoany.com/menu/page.js"></script>
+</div>
+<br clear="all" />
+<br clear="all" />
+<p><h3 style="text-align: left;">List of your games</h3></p>
+<p style="text-align:left">Check the games you've added in your profile, to be able to delete and change the personalized recommendation game.</p>
+
+
+<html>
+<head>
+<title>List of Games available</title>
+</head>
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+    </div>
+    <form method="GET" action="{{ url_for('main.donwloadprofile') }}" style="text-align: right;">
+        {% if disable == True %}
+        <a>
+            <button class="btn btn-primary" disabled>
+                Download Profile
+            </button>
+        </a>
+        {% else %}
+        <a>
+            <button class="btn btn-primary">
+                Download Profile
+            </button>
+        </a>
+        {% endif %}
+    </form>
+<body>
+<div class="container">
+    <div class="row">
+        <form method="POST">
+            <table id="example" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id_Game</th>                
+                        <th>Game</th>
+                        <th>Genre</th>
+                        <th>Year Of Release</th>
+                        <th style="width: 10px;">Critic Score</th>
+                        <th><input type="checkbox" id="all" onclick="checkAll(this)"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for game in profile.items %}
+                    <tr>                
+                        <td name="ID_GAME" id="ID_GAME">{{ game.ID_GAME}}</td>
+                        <input type="hidden" name="ID_GAME" value="{{ game.ID_GAME }}" />
+                        <td name="NM_GAME"> {{ game.NM_GAME}} </td>
+                        <input type="hidden" name="NM_GAME" value="{{ game.NM_GAME }}" />
+                        <td name="NM_GENRE"> {{ game.NM_GENRE}} </td>
+                        <td name="DT_YEAROFRELEASE"> {{ game.DT_YEAROFRELEASE}} </td>
+                        <td name="NR_CRITICSCORE">{{ game.NR_CRITICSCORE}}</td>
+                        <td>
+                            <input type="checkbox" id="delete_checkbox" name="delete_checkbox" value="{{ game.NM_GAME }}">
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Id_Game</th>              
+                        <th>Game</th>
+                        <th>Genre</th>
+                        <th>Year Of Release</th>
+                        <th>Critic Score</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+            <br clear="all" />
+            {% if disable == True %}
+            <div class="form-group" style="text-align: right;">
+                <button type="submit" class="btn btn-primary" disabled>Delete</button>                
+            </div>
+            {% else %}
+            <div class="form-group" style="text-align: right;">
+                <button type="submit" class="btn btn-primary">Delete</button>                
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+<style>
+table{
+    width:100%;
+}
+#example_filter{
+    float:right;
+}
+#example_paginate{
+    float:right;
+}
+label {
+    display: inline-flex;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+    
+}
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+</style>
+<script>
+    function checkAll(bx) {
+        var cbs = document.getElementsByTagName('input');
+        for(var i=0; i < cbs.length; i++) {
+            if(cbs[i].type == 'checkbox') {
+                cbs[i].checked = bx.checked;
+            }
+        }
+        }
+</script>
+<script>
+    $(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#example tfoot th').each( function () {
+        var title = $('#example thead th').eq( $(this).index() ).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+  
+    // DataTable
+    var table = $('#example').DataTable( {
+        // "sDom": "lfrti",
+        "pagingType": "full_numbers",
+        colReorder: true,
+        "paging":   true,
+        "ordering": true,
+        "info":     true,
+        "columnDefs": [   
+            {
+                "targets": [ 3 ],
+                "visible": true,
+                "searchable": false
+            },
+            {
+                "targets": [ 0 ],
+                "visible": false
+            }
+        ],
+
+        initComplete: function () {
+            this.api().columns([2,3]).every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+    } );
+
+    // Apply the filter
+    $("#example tfoot input").on( 'keyup change', function () {
+        table
+            .column( $(this).parent().index()+':visible' )
+            .search( this.value )
+            .draw();
+    } );
+} );
+</script>
+<script>
+    $(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#recommendation_table tfoot th').each( function () {
+        var title = $('#recommendation_table thead th').eq( $(this).index() ).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+  
+    // DataTable
+    var table = $('#recommendation_table').DataTable( {
+        // "sDom": "lfrti",
+        "pagingType": "full_numbers",
+        colReorder: true,
+        "paging":   true,
+        "ordering": true,
+        "info":     true,
+        "columnDefs": [   
+            {
+                "targets": [ 3 ],
+                "visible": true,
+                "searchable": false
+            },
+            {
+                "targets": [ 0 ],
+                "visible": false
+            }
+        ],
+
+        initComplete: function () {
+            this.api().columns([2,3]).every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+    } );
+
+    // Apply the filter
+    $("#recommendation_table tfoot input").on( 'keyup change', function () {
+        table
+            .column( $(this).parent().index()+':visible' )
+            .search( this.value )
+            .draw();
+    } );
+} );
+</script>
+<style>
+    table#recommendation_table {
+        table-layout: fixed ;
+        width: 100% ;
+        border-collapse: collapse ;
+        border: 1px black solid ;
+    }
+    table#recommendation_table td {
+        width: 50% ;
+        border: 1px black solid ;
+        padding: 10px ;
+    }
+</style>
+</body>
+</html>
+{% endblock %}
