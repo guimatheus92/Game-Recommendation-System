@@ -2,7 +2,7 @@
 import pandas as pd
 import sqlite3 as sql
 from flask_login import UserMixin, current_user
-from . import db
+from __init__ import db
 
 def get_db_connection():
     conn = sql.connect('Games.db')

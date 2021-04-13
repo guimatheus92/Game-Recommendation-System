@@ -1,6 +1,6 @@
 from flask_login import current_user
 from flask import Blueprint
-from .models import gamesplayed
+from models import gamesplayed
 from os.path import join
 from statistics import median
 import pandas as pd

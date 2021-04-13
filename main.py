@@ -2,10 +2,10 @@
 
 from flask import Blueprint, render_template, request, flash, send_file, send_from_directory
 from flask_login import login_required, current_user
-from .models import V_GAMES, USERGAMESPLAYED, qtd_rows, User, gamesunplayed, gamesplayed, check_gamesplayed
-from . import db
-from .ml_utils import predict_api
-from .games import save_ml_models
+from models import V_GAMES, USERGAMESPLAYED, qtd_rows, User, gamesunplayed, gamesplayed, check_gamesplayed
+from __init__ import db
+from ml_utils import predict_api
+from games import save_ml_models
 import datetime
 import pandas as pd
 

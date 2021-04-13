@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, request, flash, send_file, send_fr
 import pandas as pd
 import joblib as jb
 from scipy.sparse import hstack
-from .models import gamesunplayed
+from models import gamesunplayed
 
 ml_utils = Blueprint('ml_utils', __name__)
 
