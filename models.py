@@ -18,7 +18,7 @@ def get_db_connection():
         conn = sql.connect('Games.db')           
         conn.row_factory = sql.Row    
 
-return conn
+    return conn
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
