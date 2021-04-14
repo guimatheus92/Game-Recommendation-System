@@ -19,10 +19,11 @@ def create_app():
     uri = os.getenv("DATABASE_URL")  # or other relevant config var
     
     if uri.startswith("postgres://"):
-        uri = uri.replace("postgres://", "postgresql://", 1)    
-        # rest of connection code using the connection string `uri`
-
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL','sqlite:///Games.db')        
+        uri = uri.replace("postgres://", "postgresql://", 1)
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
+        # rest of connection code using the connection string `uri`    
+    else:
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Games.db'
         
     db.init_app(app)
 
