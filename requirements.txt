@@ -7,6 +7,7 @@ joblib==1.0.1
 lightgbm==3.2.0
 numpy==1.20.2
 pandas==1.2.3
+psycopg2==2.8.6
 pylint-flask==0.6
 requests==2.25.1
 scikit-learn==0.24.1
