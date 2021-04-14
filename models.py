@@ -5,9 +5,18 @@ from flask_login import UserMixin, current_user
 from __init__ import db
 
 def get_db_connection():
-    conn = sql.connect('Games.db')
-    conn.row_factory = sql.Row    
-    return conn
+    uri = os.environ.get("DATABASE_URL")  # or other relevant config var
+    
+    if uri.startswith("postgres://"):
+        uri = uri.replace("postgres://", "postgresql://", 1)        
+        # rest of connection code using the connection string `uri`
+        conn = sql.connect(uri)   
+        conn.row_factory = sql.Row    
+        return conn
+    else:
+        conn = sql.connect('Games.db')           
+        conn.row_factory = sql.Row    
+        return conn
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
