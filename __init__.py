@@ -14,7 +14,7 @@ def create_app():
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False    
     app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'    
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ttokbpjecjcqpu:a7874a1181e570148dad232916ac5809b0d8d5e945364755808a10c7ac578ab3@ec2-34-195-233-155.compute-1.amazonaws.com:5432/d9aig6f88lt429'
+    app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DATABASE_URL') or 'sqlite:///Games.db'
 
     db.init_app(app)
 
