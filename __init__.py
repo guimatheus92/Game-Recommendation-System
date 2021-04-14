@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager 
 # For relative imports to work in Python 3.6
 import os, sys; sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+import re
 
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
@@ -14,8 +15,15 @@ def create_app():
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False    
     app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'    
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL','sqlite:///Games.db')
+    
+    uri = os.getenv("DATABASE_URL")  # or other relevant config var
+    
+    if uri.startswith("postgres://"):
+        uri = uri.replace("postgres://", "postgresql://", 1)    
+        # rest of connection code using the connection string `uri`
 
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL','sqlite:///Games.db')        
+        
     db.init_app(app)
 
     login_manager = LoginManager()
