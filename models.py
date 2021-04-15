@@ -11,7 +11,7 @@ def get_db_connection():
     conn.row_factory = sql.Row    
     return conn
 
-class User(UserMixin, db.Model):
+class user(UserMixin, db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
     email = db.Column(db.String(100), unique=True)
