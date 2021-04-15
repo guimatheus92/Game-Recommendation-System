@@ -7,17 +7,8 @@ from flask_login import UserMixin, current_user
 from __init__ import db
 
 def get_db_connection():
-    uri = os.environ.get("DATABASE_URL")  # or other relevant config var
-    
-    if uri.startswith("postgres://"):
-        uri = uri.replace("postgres://", "postgresql://", 1)        
-        # rest of connection code using the connection string `uri`
-        conn = sql.connect(uri)   
-        conn.row_factory = sql.Row            
-    else:
-        conn = sql.connect('Games.db')           
-        conn.row_factory = sql.Row    
-
+    conn = sql.connect('Games.db')
+    conn.row_factory = sql.Row    
     return conn
 
 class User(UserMixin, db.Model):
