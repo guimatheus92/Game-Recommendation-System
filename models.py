@@ -12,6 +12,7 @@ def get_db_connection():
     return conn
 
 class User(UserMixin, db.Model):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
@@ -19,6 +20,7 @@ class User(UserMixin, db.Model):
     created = db.Column(db.Date)
 
 class USERGAMESPLAYED(db.Model):
+    __tablename__ = 'usergamesplayed'
     ID_PLAYED = db.Column(db.Integer, primary_key=True)
     ID_USER = db.Column(db.Integer)
     ID_GAME = db.Column(db.Integer)
@@ -27,6 +29,7 @@ class USERGAMESPLAYED(db.Model):
     DT_PLAYED = db.Column(db.Date)
 
 class V_GAMES(db.Model):
+    __tablename__ = 'v_games'
     ID_GAME = db.Column(db.Integer)
     NM_GAME = db.Column(db.String(100), primary_key=True)
     NM_GENRE = db.Column(db.String(100))
