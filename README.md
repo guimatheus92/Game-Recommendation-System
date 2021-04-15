@@ -2,21 +2,15 @@
 
 This is a game recommendation system project that I developed to put into practice some Machine Learning techniques, so the goal is for the user to add the games that have already been played by him and add it to his profile, and later receive the recommendation of new games.
 
-----
-
 ## Tutorial
 
 The tutorial to use this project after deploy, it's on the GitHube Wiki page.
-
-----
 
 ## Changelog
 
 This tutorial was last updated on April 15th, 2020:
 
 • 15/04/2021: Published the full project.
-
----
 
 ## Requirements
 
@@ -54,8 +48,6 @@ scipy==1.6.2
 SQLAlchemy==1.4.7
 
 Werkzeug==1.0.1
-
----
 
 ## Conclusion
 
