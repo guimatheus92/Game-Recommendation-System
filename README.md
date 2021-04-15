@@ -54,3 +54,12 @@ scipy==1.6.2
 SQLAlchemy==1.4.7
 
 Werkzeug==1.0.1
+
+---
+
+Conclusion
+
+1) Want my code? Grab it here.
+2) View my app on Heroku. Cheers! ☺
+3) New ideas for this app? Just let me know or help me to improve it ♥
+4) Want something else added to this tutorial? Add an issue to the repo.
