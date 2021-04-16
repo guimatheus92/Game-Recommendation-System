@@ -2,13 +2,13 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Recommendation Game System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">    
 </head>
 
 <body>
@@ -51,7 +51,9 @@
                                         </a>
                                         {% endif %}
                                         <hr class="navbar-divider">
-                                        <div class="navbar-item"></div>
+                                        <div class="navbar-item">
+                                            {{ current_user.full_name }}
+                                        </div>
                                     </div>
                                 </div>
                             </nav>
@@ -68,22 +70,6 @@
         </div>
     </section>
 </body>
-  
-<style>
-    #container {
-    width: 30px;
-    height: 30px;
-    border-radius: 30px;
-    background: #333;
-    }
-    #name {
-        width: 100%;
-        text-align: center;
-        color: white;
-        font-size: 12px;
-        line-height: 30px;
-    }
-</style>
 
 <script>
     var name = "{{ first_name }}";
