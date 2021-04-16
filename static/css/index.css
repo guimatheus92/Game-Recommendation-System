@@ -1,0 +1,493 @@
+.mediaViewInfo {
+    --web-view-name: Web 1920 – 1;
+    --web-view-id: Web_1920__1;
+    --web-scale-on-resize: true;
+    --web-enable-deep-linking: true;
+}
+:root {
+    --web-view-ids: Web_1920__1;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+#Web_1920__1 {
+    width: 1366px;
+    height: 1225px;
+    background-color: rgba(255,255,255,1);
+    overflow: hidden;
+    --web-view-name: Web 1920 – 1;
+    --web-view-id: Web_1920__1;
+    --web-scale-on-resize: true;
+    --web-enable-deep-linking: true;
+}
+#EA-Access {
+    position: absolute;
+    width: 1366px;
+    height: 341px;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+}
+#uplay-plus_adrena_i {
+    fill: url(#uplay-plus_adrena_i);
+}
+.uplay-plus_adrena_i {
+    position: absolute;
+    overflow: visible;
+    width: 1189px;
+    height: 341px;
+    left: -1px;
+    top: 0px;
+}
+#Get_game_recommendations_using {
+    left: 142px;
+    top: 38px;
+    position: absolute;
+    overflow: visible;
+    width: 371px;
+    height: 103px;
+    line-height: 40px;
+    margin-top: -5px;
+    text-align: left;
+    font-family: Effra;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    color: rgba(255,255,255,1);
+}
+#Retngulo_1 {
+    fill: rgba(255,255,255,1);
+}
+.Retngulo_1 {
+    position: absolute;
+    overflow: visible;
+    width: 179px;
+    height: 50px;
+    left: 235px;
+    top: 224px;
+}
+#Machine_Learning {
+    left: 141px;
+    top: 109px;
+    position: absolute;
+    overflow: visible;
+    width: 465px;
+    white-space: nowrap;
+    line-height: 63px;
+    margin-top: -3px;
+    text-align: left;
+    font-family: Effra;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 57px;
+    color: rgba(255,255,255,1);
+}
+#Retngulo_2 {
+    fill: rgba(245,245,245,1);
+}
+.Retngulo_2 {
+    position: absolute;
+    overflow: visible;
+    width: 1365px;
+    height: 199px;
+    left: 0px;
+    top: 1026px;
+}
+#_2021_Guilherme_Matheus {
+    left: 561px;
+    top: 1188px;
+    position: absolute;
+    overflow: visible;
+    width: 250px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Effra;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    color: rgba(0,0,0,1);
+}
+#Contact_Me {
+    left: 632px;
+    top: 1068px;
+    position: absolute;
+    overflow: visible;
+    width: 103px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Effra;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    color: rgba(0,0,0,1);
+}
+#medium {
+    fill: rgba(0,0,0,1);
+}
+.medium {
+    overflow: visible;
+    position: absolute;
+    width: 44.85px;
+    height: 44.85px;
+    left: 603px;
+    top: 1111px;
+    transform: matrix(1,0,0,1,0,0);
+}
+#linkedin_1 {
+    fill: rgba(0,0,0,1);
+}
+.linkedin_1 {
+    overflow: visible;
+    position: absolute;
+    width: 44.65px;
+    height: 44.65px;
+    left: 658px;
+    top: 1111px;
+    transform: matrix(1,0,0,1,0,0);
+}
+#GitHub-Contact {
+    fill: rgba(0,0,0,1);
+}
+.GitHub-Contact {
+    overflow: visible;
+    position: absolute;
+    width: 44.45px;
+    height: 44.45px;
+    left: 713px;
+    top: 1111px;
+    transform: matrix(1,0,0,1,0,0);
+}
+#Retngulo_3 {
+    fill: rgba(255,255,255,1);
+}
+.Retngulo_3 {
+    filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 278px;
+    height: 460px;
+    left: 259px;
+    top: 437px;
+}
+#Retngulo_4 {
+    fill: rgba(255,255,255,1);
+}
+.Retngulo_4 {
+    filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 278px;
+    height: 460px;
+    left: 559px;
+    top: 437px;
+}
+#Retngulo_5 {
+    fill: rgba(255,255,255,1);
+}
+.Retngulo_5 {
+    filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 278px;
+    height: 460px;
+    left: 859px;
+    top: 437px;
+}
+#Mora_about_the_Game_Recommenda {
+    left: 441px;
+    top: 374px;
+    position: absolute;
+    overflow: visible;
+    width: 543px;
+    height: 103px;
+    line-height: 40px;
+    margin-top: -9px;
+    text-align: left;
+    font-family: Effra;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    color: rgba(0,0,0,1);
+}
+#Retngulo_6 {
+    fill: rgba(134,134,134,1);
+}
+.Retngulo_6 {
+    position: absolute;
+    overflow: visible;
+    width: 248px;
+    height: 148px;
+    left: 259px;
+    top: 437px;
+}
+#Retngulo_7 {
+    fill: rgba(134,134,134,1);
+}
+.Retngulo_7 {
+    position: absolute;
+    overflow: visible;
+    width: 248px;
+    height: 148px;
+    left: 559px;
+    top: 437px;
+}
+#Retngulo_8 {
+    fill: rgba(134,134,134,1);
+}
+.Retngulo_8 {
+    position: absolute;
+    overflow: visible;
+    width: 248px;
+    height: 148px;
+    left: 859px;
+    top: 437px;
+}
+#Como_foi_desenvolvido_o_sistem {
+    left: 269px;
+    top: 605px;
+    position: absolute;
+    overflow: visible;
+    width: 229px;
+    height: 58px;
+    text-align: left;
+    font-family: Effra;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgba(0,0,0,1);
+}
+#Texto_1 {
+    left: 269px;
+    top: 670px;
+    position: absolute;
+    overflow: visible;
+    width: 229px;
+    height: 145px;
+    line-height: 20px;
+    margin-top: -2px;
+    text-align: left;
+    font-family: Effra;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 16px;
+    color: rgba(0,0,0,1);
+}
+#Como_foi_desenvolvido_o_sistem_ {
+    left: 571px;
+    top: 605px;
+    position: absolute;
+    overflow: visible;
+    width: 229px;
+    height: 58px;
+    text-align: left;
+    font-family: Effra;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgba(0,0,0,1);
+}
+#Texto_2 {
+    left: 571px;
+    top: 670px;
+    position: absolute;
+    overflow: visible;
+    width: 229px;
+    height: 145px;
+    line-height: 20px;
+    margin-top: -2px;
+    text-align: left;
+    font-family: Effra;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 16px;
+    color: rgba(0,0,0,1);
+}
+#Como_foi_desenvolvido_o_sistem_ba {
+    left: 872px;
+    top: 605px;
+    position: absolute;
+    overflow: visible;
+    width: 229px;
+    height: 58px;
+    text-align: left;
+    font-family: Effra;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgba(0,0,0,1);
+}
+#Texto_3 {
+    left: 872px;
+    top: 670px;
+    position: absolute;
+    overflow: visible;
+    width: 229px;
+    height: 145px;
+    line-height: 20px;
+    margin-top: -2px;
+    text-align: left;
+    font-family: Effra;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 16px;
+    color: rgba(0,0,0,1);
+}
+#Retngulo_9 {
+    fill: rgba(0,0,0,1);
+}
+.Retngulo_9 {
+    position: absolute;
+    overflow: visible;
+    width: 1365px;
+    height: 91px;
+    left: 0px;
+    top: 935px;
+}
+#right-arrow {
+    position: absolute;
+    width: 18.797px;
+    height: 15.638px;
+    left: 477.914px;
+    top: 841.584px;
+    overflow: visible;
+}
+#Grupo_1 {
+    position: absolute;
+    width: 18.797px;
+    height: 15.638px;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+}
+#Caminho_1 {
+    fill: rgba(2,24,97,1);
+}
+.Caminho_1 {
+    overflow: visible;
+    position: absolute;
+    width: 18.797px;
+    height: 15.638px;
+    left: 0px;
+    top: 0px;
+    transform: matrix(1,0,0,1,0,0);
+}
+#right-arrow_ {
+    position: absolute;
+    width: 18.797px;
+    height: 15.638px;
+    left: 778.914px;
+    top: 841.584px;
+    overflow: visible;
+}
+#Grupo_1_ {
+    position: absolute;
+    width: 18.797px;
+    height: 15.638px;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+}
+#Caminho_1_ba {
+    fill: rgba(2,24,97,1);
+}
+.Caminho_1_ba {
+    overflow: visible;
+    position: absolute;
+    width: 18.797px;
+    height: 15.638px;
+    left: 0px;
+    top: 0px;
+    transform: matrix(1,0,0,1,0,0);
+}
+#right-arrow_bb {
+    position: absolute;
+    width: 18.797px;
+    height: 15.638px;
+    left: 1078.915px;
+    top: 841.584px;
+    overflow: visible;
+}
+#Grupo_1_bc {
+    position: absolute;
+    width: 18.797px;
+    height: 15.638px;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+}
+#Caminho_1_bd {
+    fill: rgba(2,24,97,1);
+}
+.Caminho_1_bd {
+    overflow: visible;
+    position: absolute;
+    width: 18.797px;
+    height: 15.638px;
+    left: 0px;
+    top: 0px;
+    transform: matrix(1,0,0,1,0,0);
+}
+#Retngulo_10 {
+    fill: rgba(255,255,255,1);
+}
+.Retngulo_10 {
+    position: absolute;
+    overflow: visible;
+    width: 305px;
+    height: 53px;
+    left: 531px;
+    top: 954px;
+}
+#GET_RECOMMENDATION {
+    left: 567px;
+    top: 967px;
+    position: absolute;
+    overflow: visible;
+    width: 235px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Effra;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgba(0,0,0,1);
+}
+#Grupo_2 {
+    position: absolute;
+    width: 143px;
+    height: 27px;
+    left: 253px;
+    top: 234px;
+    overflow: visible;
+}
+#GET_STARTED {
+    left: 25px;
+    top: 0px;
+    position: absolute;
+    overflow: visible;
+    width: 119px;
+    white-space: nowrap;
+    line-height: 50px;
+    margin-top: -15px;
+    text-align: left;
+    font-family: Effra;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    color: rgba(0,0,0,1);
+}
+#game-controller {
+    fill: rgba(0,0,0,1);
+}
+.game-controller {
+    overflow: visible;
+    position: absolute;
+    width: 16.5px;
+    height: 16.5px;
+    left: 0px;
+    top: 7px;
+    transform: matrix(1,0,0,1,0,0);
+}

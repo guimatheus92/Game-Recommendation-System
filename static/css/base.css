@@ -1,0 +1,13 @@
+#container {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background: #333;
+    }
+    #name {
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 12px;
+        line-height: 30px;
+    }

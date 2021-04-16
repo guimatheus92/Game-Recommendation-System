@@ -1,0 +1,34 @@
+table{
+    width:100%;
+}
+#example_filter{
+    float:right;
+}
+#example_paginate{
+    float:right;
+}
+label {
+    display: inline-flex;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+    
+}
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+
+table#recommendation_table {
+    table-layout: fixed ;
+    width: 100% ;
+    border-collapse: collapse ;
+    border: 1px black solid ;
+}
+table#recommendation_table td {
+    width: 50% ;
+    border: 1px black solid ;
+    padding: 10px ;
+}
