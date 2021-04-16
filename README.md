@@ -10,7 +10,10 @@ The tutorial to use this project after deploy, it's on the GitHube Wiki page.
 
 This tutorial was last updated on April 15th, 2020:
 
-• 15/04/2021: Published the full project.
+- 16/04/2021: 
+	- Created subfolders `js` and `css` inside `static` folder
+	- I entered the user's full name in the dropdown-menu
+- 15/04/2021: Published the full project.
 
 ## Requirements
 
@@ -51,7 +54,7 @@ Werkzeug==1.0.1
 
 ## Conclusion
 
-1) Want my code? Grab it here.
+1) Want my code? [Grab it here](http://https://github.com/guimatheus92/Game-Recommendation-System "Grab it here").
 2) View my app on Heroku. Cheers! ☺
 3) New ideas for this app? Just let me know or help me to improve it ♥
 4) Want something else added to this tutorial? Add an issue to the repo.
