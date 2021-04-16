@@ -9,6 +9,7 @@ from games import save_ml_models
 import datetime
 import pandas as pd
 
+
 main = Blueprint('main', __name__)
 
 def get_recommendation():
@@ -37,8 +38,8 @@ def donwloadrecommendation():
             return None
         else:
             recommendations_df = get_recommendation()
-            recommendations_df.to_csv(r'../recommendations.csv', index=False)  
-            recommendations_file = (r'../recommendations.csv')  
+            recommendations_df.to_csv(r'recommendations.csv', index=False)  
+            recommendations_file = (r'recommendations.csv')  
             return send_file(recommendations_file, as_attachment=True)
 
 @main.route('/donwloadprofile', methods=('GET', 'POST'))
@@ -49,9 +50,9 @@ def donwloadprofile():
             return None
         else:            
             profile_table = db.session.query(USERGAMESPLAYED.ID_USER, USERGAMESPLAYED.NM_GAME, V_GAMES.DT_YEAROFRELEASE, V_GAMES.NM_GENRE, V_GAMES.NR_CRITICSCORE).select_from(USERGAMESPLAYED).join(V_GAMES, V_GAMES.ID_GAME == USERGAMESPLAYED.ID_GAME).filter(USERGAMESPLAYED.ID_USER==current_user.id)
-            profile_df = pd.DataFrame(profile_table, columns=['ID_USER', 'NM_GAME', 'DT_YEAROFRELEASE', 'NM_GENRE', 'NR_CRITICSCORE'])            
-            profile_df.to_csv(r'../profile.csv', index=False)
-            profile = (r'../profile.csv')
+            profile_df = pd.DataFrame(profile_table, columns=['ID_USER', 'NM_GAME', 'DT_YEAROFRELEASE', 'NM_GENRE', 'NR_CRITICSCORE'])
+            profile_df.to_csv(r'profile.csv', index=False)
+            profile = (r'profile.csv')
             return send_file(profile, as_attachment=True)
 
 @main.route('/profile/<int:page_num>', methods=('GET', 'POST'))
@@ -60,7 +61,7 @@ def profile(page_num):
     profile = db.session.query(USERGAMESPLAYED.ID_USER, USERGAMESPLAYED.NM_GAME, V_GAMES.DT_YEAROFRELEASE, V_GAMES.NM_GENRE, V_GAMES.NR_CRITICSCORE).select_from(USERGAMESPLAYED).join(V_GAMES, V_GAMES.ID_GAME == USERGAMESPLAYED.ID_GAME).filter(USERGAMESPLAYED.ID_USER==current_user.id).paginate(per_page=len(qtd_rows), page=page_num, error_out=True)    
 
     first_name = current_user.name.rsplit(' ', 1)[0]
-    last_name = current_user.name.rsplit(' ', 1)[1]
+    last_name = current_user.name.rsplit(' ', 1)[1]    
     
     df_checkgamesplayed = check_gamesplayed()        
 

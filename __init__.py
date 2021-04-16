@@ -14,16 +14,27 @@ def create_app():
     app = Flask(__name__)
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False    
-    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+    
+    try:
+        if os.environ.get('SECRET_KEY') == None:
+            app.config['SECRET_KEY'] ='9OLWxND4o83j4K4iuopO'
+        else:
+            app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+    except:
+        app.config['SECRET_KEY'] ='9OLWxND4o83j4K4iuopO'
     
     uri = os.environ.get("DATABASE_URL")  # or other relevant config var
     
-    if uri.startswith("postgres://"):
-        uri = uri.replace("postgres://", "postgresql://", 1)
-        app.config['SQLALCHEMY_DATABASE_URI'] = uri
-        # rest of connection code using the connection string `uri`    
-    else:
+    try:
+        if uri.startswith("postgres://"):
+            uri = uri.replace("postgres://", "postgresql://", 1)
+            app.config['SQLALCHEMY_DATABASE_URI'] = uri
+            # rest of connection code using the connection string `uri`    
+        else:
+            app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Games.db'
+    except:
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Games.db'
+
         
     db.init_app(app)
 
@@ -31,12 +42,12 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    from models import user    
-    
+    from models import User
+
     @login_manager.user_loader    
     def load_user(user_id):
         # since the user_id is just the primary key of our user table, use it in the query for the user
-        return user.query.get(int(user_id))
+        return User.query.get(int(user_id))
 
     # blueprint for auth routes in our app
     from auth import auth as auth_blueprint
@@ -55,7 +66,3 @@ def create_app():
     app.register_blueprint(main_blueprint)
 
     return app
-
-if __name__ == '__main__':
-   db.create_all()
-   app.run(debug = True)
