@@ -60,37 +60,23 @@ This tutorial was last updated on April 15th, 2020:
 The requirements can be found in requirements.txt file also.
 This project utilizes the following requirements:
 
-Flask==1.1.2
-
-Flask-Login==0.5.0
-
-Flask-SQLAlchemy==2.5.1
-
-gunicorn==20.1.0
-
-Jinja2==2.11.2
-
-joblib==1.0.1
-
-lightgbm==3.2.0
-
-numpy==1.20.2
-
-pandas==1.2.3
-
-pylint-flask==0.6
-
-requests==2.25.1
-
-scikit-learn==0.24.1
-
-scikit-optimize==0.8.1
-
-scipy==1.6.2
-
-SQLAlchemy==1.4.7
-
-Werkzeug==1.0.1
+    Flask==1.1.2
+    Flask-Login==0.5.0
+    Flask-SQLAlchemy==2.5.1
+    gunicorn==20.1.0
+    Jinja2==2.11.2
+    joblib==1.0.1
+    lightgbm==3.2.0
+    numpy==1.20.2
+    pandas==1.2.3
+    psycopg2==2.8.6
+    pylint-flask==0.6
+    requests==2.25.1
+    scikit-learn==0.24.1
+    scikit-optimize==0.8.1
+    scipy==1.6.2
+    SQLAlchemy==1.4.7
+    Werkzeug==1.0.1
 
 ## Conclusion
 
