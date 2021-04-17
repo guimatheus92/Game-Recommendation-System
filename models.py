@@ -1,10 +1,11 @@
 # models.py
 import pandas as pd
 import sqlite3 as sql
-from flask_login import UserMixin, current_user
-from __init__ import db
 import os
 import psycopg2
+from flask_login import UserMixin, current_user
+from __init__ import db
+from sqlalchemy import create_engine
 
 DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -38,7 +39,7 @@ def check_gamesplayed():
     params = (str(userid))
     DATABASE_URL = os.environ['DATABASE_URL']
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-    df_checkgamesplayed = pd.read_sql_query('SELECT * FROM "USERGAMESPLAYED" WHERE ID_USER = ?', conn, params = params)    
+    df_checkgamesplayed = pd.read_sql_query('SELECT * FROM "USERGAMESPLAYED" WHERE ID_USER = ?;', conn, params=(params))    
     conn.close()
     return df_checkgamesplayed
 
