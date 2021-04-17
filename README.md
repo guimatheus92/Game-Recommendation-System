@@ -44,7 +44,7 @@ This is a game recommendation system project that I developed to put into practi
 
 ## Tutorial
 
-The tutorial to use this project after deploy, it's on the GitHube Wiki page.
+The tutorial to use this project after deploy, can be found on [GitHub Wiki](https://github.com/guimatheus92/Game-Recommendation-System/wiki/Tutorial-on-how-to-get-a-recommendation "GitHub Wiki") page.
 
 ## Changelog
 
