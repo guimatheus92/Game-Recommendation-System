@@ -31,7 +31,7 @@ class V_GAMES(db.Model):
     NR_CRITICSCORE = db.Column(db.Integer)
     DT_YEAROFRELEASE = db.Column(db.String(100))
 
-qtd_rows = pd.read_sql_query('SELECT * FROM V_GAMES', conn)
+qtd_rows = pd.read_sql_query('SELECT * FROM "V_GAMES"', conn)
 
 def check_gamesplayed():
     userid = current_user.id    
