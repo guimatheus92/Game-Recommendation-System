@@ -80,7 +80,9 @@ This project utilizes the following requirements:
 
 ## Conclusion
 
-1) Want my code? [Grab it here](http://https://github.com/guimatheus92/Game-Recommendation-System "Grab it here").
-2) View my app on Heroku. Cheers! ☺
-3) New ideas for this app? Just let me know or help me to improve it ♥
-4) Want something else added to this tutorial? Add an issue to the repo.
+1.  Want my code? [Grab it here](http://https://github.com/guimatheus92/Game-Recommendation-System "Grab it here").
+2. Want the tutorial? [Go to here](https://github.com/guimatheus92/Game-Recommendation-System/wiki/Tutorial-on-how-to-get-a-recommendation "Go to here").
+3. View my app on Heroku. Cheers! ☺
+4. New ideas for this app? Help me to improve it ♥
+5. Want something else added to this tutorial? Add an issue to the repo.
+
