@@ -36,6 +36,8 @@ qtd_rows = pd.read_sql_query('SELECT * FROM "V_GAMES"', conn)
 def check_gamesplayed():
     userid = current_user.id    
     params = (str(userid))
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     df_checkgamesplayed = pd.read_sql_query('SELECT * FROM USERGAMESPLAYED WHERE ID_USER = ?', conn, params = params)
     conn.close()
     return df_checkgamesplayed
