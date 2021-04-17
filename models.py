@@ -3,12 +3,11 @@ import pandas as pd
 import sqlite3 as sql
 from flask_login import UserMixin, current_user
 from __init__ import db
-from io import StringIO
+import os
+import psycopg2
 
-def get_db_connection():
-    conn = sql.connect('Games.db')
-    conn.row_factory = sql.Row    
-    return conn
+DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
@@ -32,13 +31,11 @@ class V_GAMES(db.Model):
     NR_CRITICSCORE = db.Column(db.Integer)
     DT_YEAROFRELEASE = db.Column(db.String(100))
 
-conn = get_db_connection()
 qtd_rows = conn.execute('SELECT * FROM V_GAMES').fetchall()
 
 def check_gamesplayed():
     userid = current_user.id    
     params = (str(userid))
-    conn = get_db_connection()
     df_checkgamesplayed = pd.read_sql_query('SELECT * FROM USERGAMESPLAYED WHERE ID_USER = ?', conn, params = params)
     conn.close()
     return df_checkgamesplayed
@@ -48,8 +45,6 @@ def gamesunplayed():
     #params = ("1", "1")    
     userid = current_user.id    
     params = (str(userid), str(userid))
-
-    conn = get_db_connection()
 
     # Create dataframe
     df_gamesunplayed = pd.read_sql_query('''SELECT
@@ -97,8 +92,6 @@ def gamesplayed():
     #params = ("1", "1")
     userid = current_user.id
     params = (str(userid), str(userid))
-
-    conn = get_db_connection()
 
     # Create dataframe
     df_gamesplayed = pd.read_sql_query('''SELECT
