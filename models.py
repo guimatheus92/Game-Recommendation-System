@@ -51,41 +51,41 @@ def gamesunplayed():
     params = (str(userid), str(userid))
 
     # Create dataframe
-    df_gamesunplayed = pd.read_sql_query('''SELECT
-    x.*,
-    NM_GAME || '-' || NM_PUBLISHER || '-' || NM_GENRE AS IMPORTANT_FEATURES
-    FROM( 
-    SELECT DISTINCT
-    IFNULL(f.ID_USER,?) AS ID_USER,
-    b.ID_GAME,
-    b.NM_GAME,
-    MAX(e.NM_PUBLISHER) AS NM_PUBLISHER,
-    MAX(c.NM_GENRE) AS NM_GENRE,
-    MAX(1) AS QT_GAMES,
-    MAX(a.NR_CRITICSCORE) AS NR_CRITICSCORE,
-    MAX(a.NR_USERSCORE) AS NR_USERSCORE,
-    MIN(d.DT_YEAR) AS DT_YEAROFRELEASE,
-    MAX(CASE
-    WHEN f.IC_PLAYED = 'NO'  THEN 0
-    WHEN f.IC_PLAYED = 'YES' THEN 1
-    ELSE 0
-    END) IC_PLAYED
-    FROM F_GAMESBYPLATFORM a 
-    LEFT JOIN D_GAMES b
-    ON b.ID_GAME = a.ID_GAME
-    LEFT JOIN D_GENRE c
-    ON c.ID_GENRE = a.ID_GENRE
-    LEFT JOIN D_DATE d
-    ON d.ID_DATE = a.ID_DATE
-    LEFT JOIN D_PUBLISHER e
-    ON e.ID_PUBLISHER = a.ID_PUBLISHER
-    LEFT JOIN USERGAMESPLAYED f
-    ON f.ID_GAME = a.ID_GAME
-    AND f.ID_USER = ?
-    WHERE b.LINSOURCE <> 'CARGA MANUAL'
-    AND d.DT_YEAR > 0
-    GROUP BY b.ID_GAME, b.NM_GAME) x
-    WHERE IC_PLAYED = 0''', conn, params = params)
+    df_gamesunplayed = pd.read_sql_query('''select
+	x.*,
+	nm_game || '-' || nm_publisher || '-' || nm_genre as important_features
+	from( 
+	select distinct
+	ifnull(f.id_user,?) as id_user,
+	b.id_game,
+	b.nm_game,
+	max(e.nm_publisher) as nm_publisher,
+	max(c.nm_genre) as nm_genre,
+	max(1) as qt_games,
+	max(a.nr_criticscore) as nr_criticscore,
+	max(a.nr_userscore) as nr_userscore,
+	min(d.dt_year) as dt_yearofrelease,
+	max(case
+	when f.ic_played = 'no'  then 0
+	when f.ic_played = 'yes' then 1
+	else 0
+	end) ic_played
+	from f_gamesbyplatform a 
+	left join d_games b
+	on b.id_game = a.id_game
+	left join d_genre c
+	on c.id_genre = a.id_genre
+	left join d_date d
+	on d.id_date = a.id_date
+	left join d_publisher e
+	on e.id_publisher = a.id_publisher
+	left join usergamesplayed f
+	on f.id_game = a.id_game
+	and f.id_user = ?
+	where b.linsource <> 'carga manual'
+	and d.dt_year > 0
+	group by b.id_game, b.nm_game) x
+	where ic_played = 0''', conn, params = params)
 
     conn.close()
 
