@@ -78,6 +78,12 @@ This project utilizes the following requirements:
     SQLAlchemy==1.4.7
     Werkzeug==1.0.1
 
+## Observationns
+
+- I had to decrease the amount of rows in some tables in the database that was published on Heroku, due to a limitation of my Free user, so it only supports 10,000 rows. However the complete database (sqlite) that I developed and that worked locally, is published in the [db](https://github.com/guimatheus92/Game-Recommendation-System/tree/main/db "db") folder.
+
+- First I had created a database in SQLite, but to work in Heroku I had to use Postgres, so I had to export the data from the SQLite tables to `.sql` files.
+
 ## Conclusion
 
 1.  Want my code? [Grab it here](http://https://github.com/guimatheus92/Game-Recommendation-System "Grab it here").
@@ -85,4 +91,3 @@ This project utilizes the following requirements:
 3. View my app on Heroku. Cheers! ☺
 4. New ideas for this app? Help me to improve it ♥
 5. Want something else added to this tutorial? Add an issue to the repo.
-
