@@ -18,7 +18,8 @@ games = Blueprint('games', __name__)
 def save_ml_models():
 	
 	df_gamesplayed = gamesplayed()
-	print(df_gamesplayed.head())
+	df_gamesplayed.columns = map(lambda x: str(x).upper(), df_gamesplayed.columns)
+	print(sorted(df_gamesplayed))
 	
 	# Features
 	features = pd.DataFrame(index=df_gamesplayed.index)
