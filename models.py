@@ -59,7 +59,7 @@ def gamesunplayed():
 	nm_game || '-' || nm_publisher || '-' || nm_genre as important_features
 	from( 
 	select distinct
-	ifnull(f."id_user",%s) as id_user,
+	coalesce(f."ID_USER",%s) as id_user,
 	b.id_game,
 	b.nm_game,
 	max(e.nm_publisher) as nm_publisher,
@@ -69,8 +69,8 @@ def gamesunplayed():
 	max(a.nr_userscore) as nr_userscore,
 	min(d.dt_year) as dt_yearofrelease,
 	max(case
-	when f.ic_played = 'no'  then 0
-	when f.ic_played = 'yes' then 1
+	when f."IC_PLAYED" = 'no'  then 0
+	when f."IC_PLAYED" = 'yes' then 1
 	else 0
 	end) ic_played
 	from f_gamesbyplatform a 
@@ -82,12 +82,12 @@ def gamesunplayed():
 	on d.id_date = a.id_date
 	left join d_publisher e
 	on e.id_publisher = a.id_publisher
-	left join "USERGAMESPLAYED" f
-	on f.id_game = a.id_game
-	and f.id_user = %s
-	where b.linsource <> 'carga manual'
+	left join "USERGAMESPLAYED" AS f
+	on f."ID_GAME" = a.id_game
+	and f."ID_USER" = %s
+	where b.linsource <> 'CARGA MANUAL'
 	and d.dt_year > 0
-	group by b.id_game, b.nm_game) x
+	group by b.id_game, b.nm_game, coalesce(f."ID_USER",%s)) x
 	where ic_played = 0''', conn, params = params)
 
     conn.close()
@@ -106,7 +106,7 @@ def gamesplayed():
 	nm_game || '-' || nm_publisher || '-' || nm_genre as important_features
 	from( 
 	select distinct
-	ifnull(f."id_user",%s) as id_user,
+	coalesce(f."ID_USER",%s) as id_user,
 	b.id_game,
 	b.nm_game,
 	max(e.nm_publisher) as nm_publisher,
@@ -116,8 +116,8 @@ def gamesplayed():
 	max(a.nr_userscore) as nr_userscore,
 	min(d.dt_year) as dt_yearofrelease,
 	max(case
-	when "f.ic_played" = 'no'  then 0
-	when "f.ic_played" = 'yes' then 1
+	when f."IC_PLAYED" = 'no'  then 0
+	when f."IC_PLAYED" = 'yes' then 1
 	else 0
 	end) ic_played
 	from f_gamesbyplatform a 
@@ -129,12 +129,12 @@ def gamesplayed():
 	on d.id_date = a.id_date
 	left join d_publisher e
 	on e.id_publisher = a.id_publisher
-	left join "USERGAMESPLAYED" f
-	on "f.id_game" = a.id_game
-	and "f.id_user" = %s
-	where b.linsource <> 'carga manual'
+	left join "USERGAMESPLAYED" AS f
+	on f."ID_GAME" = a.id_game
+	and f."ID_USER" = %s
+	where b.linsource <> 'CARGA MANUAL'
 	and d.dt_year > 0
-	group by b.id_game, b.nm_game) x
+	group by b.id_game, b.nm_game, coalesce(f."ID_USER",%s)) x
     WHERE ic_played IS NOT NUll''', conn, params = params)
 
     conn.close()
