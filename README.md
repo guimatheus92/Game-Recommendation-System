@@ -89,6 +89,8 @@ This project utilizes the following requirements:
 
 - First I had created a database in SQLite, but to work in Heroku I had to use Postgres, so I had to export the data from the SQLite tables to `.sql` files.
 
+- I added the Index.xd file that I made in Adobe XD also in the repository, because it was through it that I made the editing of some items of Index.html, but some adjustments I made directly in Index.html instead of in Adobe XD.
+
 ## Conclusion
 
 1. Want my code? [Grab it here](http://https://github.com/guimatheus92/Game-Recommendation-System "Grab it here") 📎
