@@ -59,23 +59,23 @@ def gamesunplayed():
     # Create dataframe
     df_gamesunplayed = pd.read_sql_query('''select
 	x.*,
-	nm_game || '-' || nm_publisher || '-' || nm_genre as important_features
+	nm_game || '-' || nm_publisher || '-' || nm_genre as IMPORTANT_FEATURES
 	from( 
 	select distinct
 	coalesce(f."ID_USER",%s) as id_user,
-	b.id_game,
-	b.nm_game,
-	max(e.nm_publisher) as nm_publisher,
-	max(c.nm_genre) as nm_genre,
+	b.id_game AS ID_GAME,
+	b.nm_game AS NM_GAME,
+	max(e.nm_publisher) as NM_PUBLISHER,
+	max(c.nm_genre) as NM_GENRE,
 	max(1) as qt_games,
-	max(a.nr_criticscore) as nr_criticscore,
-	max(a.nr_userscore) as nr_userscore,
-	min(d.dt_year) as dt_yearofrelease,
+	max(a.nr_criticscore) as NR_CRITICSCORE,
+	max(a.nr_userscore) as NR_USERSCORE,
+	min(d.dt_year) as DT_YEAROFRELEASE,
 	max(case
 	when f."IC_PLAYED" = 'NO'  then 0
 	when f."IC_PLAYED" = 'YES' then 1
 	else 0
-	end) ic_played
+	end) IC_PLAYED
 	from f_gamesbyplatform a 
 	left join d_games b
 	on b.id_game = a.id_game
@@ -109,23 +109,23 @@ def gamesplayed():
     # Create dataframe
     df_gamesplayed = pd.read_sql_query('''select
 	x.*,
-	nm_game || '-' || nm_publisher || '-' || nm_genre as important_features
+	nm_game || '-' || nm_publisher || '-' || nm_genre as IMPORTANT_FEATURES
 	from( 
 	select distinct
 	coalesce(f."ID_USER",%s) as id_user,
-	b.id_game,
-	b.nm_game,
-	max(e.nm_publisher) as nm_publisher,
-	max(c.nm_genre) as nm_genre,
+	b.id_game AS ID_GAME,
+	b.nm_game AS NM_GAME,
+	max(e.nm_publisher) as NM_PUBLISHER,
+	max(c.nm_genre) as NM_GENRE,
 	max(1) as qt_games,
-	max(a.nr_criticscore) as nr_criticscore,
-	max(a.nr_userscore) as nr_userscore,
-	min(d.dt_year) as dt_yearofrelease,
+	max(a.nr_criticscore) as NR_CRITICSCORE,
+	max(a.nr_userscore) as NR_USERSCORE,
+	min(d.dt_year) as DT_YEAROFRELEASE,
 	max(case
 	when f."IC_PLAYED" = 'NO'  then 0
 	when f."IC_PLAYED" = 'YES' then 1
 	else 0
-	end) ic_played
+	end) IC_PLAYED
 	from f_gamesbyplatform a 
 	left join d_games b
 	on b.id_game = a.id_game
