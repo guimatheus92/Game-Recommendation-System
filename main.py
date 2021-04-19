@@ -14,6 +14,7 @@ main = Blueprint('main', __name__)
 
 def get_recommendation():
     df_gamesunplayed = gamesunplayed()
+    df_gamesunplayed.columns = map(lambda x: str(x).upper(), df_gamesunplayed.columns)
     p = predict_api()
     output = {"ID_USER": df_gamesunplayed['ID_USER'], "ID_GAME": df_gamesunplayed['ID_GAME'], "NM_GAME": df_gamesunplayed['NM_GAME'], "NM_PUBLISHER": df_gamesunplayed['NM_PUBLISHER'], "NM_GENRE": df_gamesunplayed['NM_GENRE'], "QT_GAMES": df_gamesunplayed['QT_GAMES'], "NR_CRITICSCORE": df_gamesunplayed['NR_CRITICSCORE'], "DT_YEAROFRELEASE": df_gamesunplayed['DT_YEAROFRELEASE'], "IC_PLAYED": df_gamesunplayed['IC_PLAYED'], "Score": p}
     recommendations_df = pd.DataFrame(output)
