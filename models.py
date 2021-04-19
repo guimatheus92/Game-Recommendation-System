@@ -69,8 +69,8 @@ def gamesunplayed():
 	max(a.nr_userscore) as nr_userscore,
 	min(d.dt_year) as dt_yearofrelease,
 	max(case
-	when "f.ic_played" = 'no'  then 0
-	when "f.ic_played" = 'yes' then 1
+	when f.ic_played = 'no'  then 0
+	when f.ic_played = 'yes' then 1
 	else 0
 	end) ic_played
 	from f_gamesbyplatform a 
@@ -83,8 +83,8 @@ def gamesunplayed():
 	left join d_publisher e
 	on e.id_publisher = a.id_publisher
 	left join "USERGAMESPLAYED" f
-	on "f.id_game" = a.id_game
-	and "f.id_user" = %s
+	on f.id_game = a.id_game
+	and f.id_user = %s
 	where b.linsource <> 'carga manual'
 	and d.dt_year > 0
 	group by b.id_game, b.nm_game) x
