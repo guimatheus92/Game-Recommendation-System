@@ -135,7 +135,7 @@ def gamesplayed():
 	where b.linsource <> 'carga manual'
 	and d.dt_year > 0
 	group by b.id_game, b.nm_game) x
-    WHERE "IC_PLAYED" IS NOT NUll''', conn, params = params)
+    WHERE ic_played IS NOT NUll''', conn, params = params)
 
     conn.close()
 
