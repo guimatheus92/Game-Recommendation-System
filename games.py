@@ -18,9 +18,6 @@ games = Blueprint('games', __name__)
 def save_ml_models():
 	
 	df_gamesplayed = gamesplayed()
-	df_gamesplayed = df_gamesplayed[~df_gamesplayed['IC_PLAYED'].isnull()]
-
-	#df_gamesplayed.to_csv('E:\\OneDrive\\Documentos\\Cursos\\Mario Filho\\Games\\Web\\flask_auth_app\\project\\static\\csv\\df_gamesplayed.csv', index=False)
 
 	# Features
 	features = pd.DataFrame(index=df_gamesplayed.index)
