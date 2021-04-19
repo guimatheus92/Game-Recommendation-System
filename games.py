@@ -76,14 +76,6 @@ def save_ml_models():
 	
 	mdl_rf = RandomForestClassifier(n_estimators=1000, random_state=0, min_samples_leaf=2, class_weight="balanced", n_jobs=6)
 	mdl_rf.fit(Xtrain_wtitle, ytrain)
-	p_rf = mdl_rf.predict_proba(Xval_wtitle)[:, 1]
-	
-	# Save machine learning models
-	
-	# v1 = 08/03/2021
-	
-	jb.dump(mdl_rf, "random_forest_personalized.pkl.z")
-	jb.dump(mdl_lgbm, "lgbm_personalized.pkl.z")
-	jb.dump(title_vec, "title_vectorizer_personalized.pkl.z")
+	p_rf = mdl_rf.predict_proba(Xval_wtitle)[:, 1]	
 
-	return True
+	return mdl_rf, mdl_lgbm, title_vec
