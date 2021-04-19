@@ -50,10 +50,15 @@ The tutorial to use this project after deploy, can be found on [GitHub Wiki](htt
 
 This tutorial was last updated on April 15th, 2020:
 
-- 16/04/2021: 
+- **19/04/2021**:
+	- Added the full name on the dropdown menu
+	- Changed the script to return the ML models variables instead of dump and load
+- **18/04/2021**:
+	- Decreased the amount of rows in some tables that was deployed on Heroku due to a limitation
+- **16/04/2021**:
 	- Created subfolders `js` and `css` inside `static` folder
 	- I entered the user's full name in the dropdown-menu
-- 15/04/2021: Published the full project.
+- **15/04/2021**: Published the full project.
 
 ## Requirements
 
@@ -86,8 +91,9 @@ This project utilizes the following requirements:
 
 ## Conclusion
 
-1.  Want my code? [Grab it here](http://https://github.com/guimatheus92/Game-Recommendation-System "Grab it here").
-2. Want the tutorial? [Go to here](https://github.com/guimatheus92/Game-Recommendation-System/wiki/Tutorial-on-how-to-get-a-recommendation "Go to here").
-3. View my app on Heroku. Cheers! ☺
-4. New ideas for this app? Help me to improve it ♥
-5. Want something else added to this tutorial? Add an issue to the repo.
+1. Want my code? [Grab it here](http://https://github.com/guimatheus92/Game-Recommendation-System "Grab it here") 📎
+2. Want the tutorial of how to use it? [Go to here](https://github.com/guimatheus92/Game-Recommendation-System/wiki/Tutorial-on-how-to-get-a-recommendation "Go to here") ✔️
+3. Check the article on [Medium](https://guimatheus92.medium.com/game-recommendation-system-using-machine-learning-and-flask-e0c2a3e0305b "Medium") about this development 📌
+4. View my app on Heroku. Cheers! 😊
+5. New ideas for this app? Help me to improve it ❤️
+6. Want something else added to this tutorial? Add an issue to the repo ⚠️
