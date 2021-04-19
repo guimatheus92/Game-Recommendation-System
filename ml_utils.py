@@ -5,6 +5,7 @@ import pandas as pd
 import joblib as jb
 from scipy.sparse import hstack
 from models import gamesunplayed
+from games import save_ml_models
 
 ml_utils = Blueprint('ml_utils', __name__)
 
@@ -12,9 +13,7 @@ def predict_api():
 
     df_gamesunplayed = gamesunplayed()
 
-    mdl_rf = jb.load("random_forest_personalized.pkl.z")
-    mdl_lgbm = jb.load("lgbm_personalized.pkl.z")
-    title_vec = jb.load("title_vectorizer_personalized.pkl.z")
+    mdl_rf, mdl_lgbm, title_vec = save_ml_models() # Assign returned tuple
 
     title = df_gamesunplayed['IMPORTANT_FEATURES']
 
