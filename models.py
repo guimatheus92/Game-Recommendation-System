@@ -53,6 +53,9 @@ def gamesunplayed():
     userid = current_user.id    
     params = (str(userid), str(userid), str(userid))
 
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
     # Create dataframe
     df_gamesunplayed = pd.read_sql_query('''select
 	x.*,
@@ -99,6 +102,9 @@ def gamesplayed():
     #params = ("1", "1")
     userid = current_user.id
     params = (str(userid), str(userid), str(userid))
+
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
     # Create dataframe
     df_gamesplayed = pd.read_sql_query('''select
