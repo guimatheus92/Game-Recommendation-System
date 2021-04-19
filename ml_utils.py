@@ -13,7 +13,7 @@ def predict_api():
 
     df_gamesunplayed = gamesunplayed()
     df_gamesplayed.columns = map(lambda x: str(x).upper(), df_gamesplayed.columns)
-	print("df_gamesplayed columns:" + str(sorted(df_gamesplayed)))
+    print("df_gamesplayed columns:" + str(sorted(df_gamesplayed)))
 
     mdl_rf, mdl_lgbm, title_vec = save_ml_models() # Assign returned tuple
 
