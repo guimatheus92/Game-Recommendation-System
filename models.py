@@ -82,7 +82,7 @@ def gamesunplayed():
 	on d.id_date = a.id_date
 	left join d_publisher e
 	on e.id_publisher = a.id_publisher
-	left join "usergamesplayed" f
+	left join "USERGAMESPLAYED" f
 	on f."id_game" = a.id_game
 	and f."id_user" = %s
 	where b.linsource <> 'carga manual'
@@ -129,7 +129,7 @@ def gamesplayed():
 	on d.id_date = a.id_date
 	left join d_publisher e
 	on e.id_publisher = a.id_publisher
-	left join "usergamesplayed" f
+	left join "USERGAMESPLAYED" f
 	on f."id_game" = a.id_game
 	and f."id_user" = %s
 	where b.linsource <> 'carga manual'
