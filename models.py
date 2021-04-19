@@ -17,20 +17,20 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(1000))
     created = db.Column(db.Date)
 
-class USERGAMESPLAYED(db.Model):
-    ID_PLAYED = db.Column(db.Integer, primary_key=True)
-    ID_USER = db.Column(db.Integer)
-    ID_GAME = db.Column(db.Integer)
-    NM_GAME = db.Column(db.String(100))
-    IC_PLAYED = db.Column(db.String(20))
-    DT_PLAYED = db.Column(db.Date)
+class usergamesplayed(db.Model):
+    id_played = db.Column(db.Integer, primary_key=True)
+    id_user   = db.Column(db.Integer)
+    id_game   = db.Column(db.Integer)
+    nm_game   = db.Column(db.String(100))
+    ic_played = db.Column(db.String(20))
+    dt_played = db.Column(db.Date)
 
-class V_GAMES(db.Model):
-    ID_GAME = db.Column(db.Integer)
-    NM_GAME = db.Column(db.String(100), primary_key=True)
-    NM_GENRE = db.Column(db.String(100))
-    NR_CRITICSCORE = db.Column(db.Integer)
-    DT_YEAROFRELEASE = db.Column(db.String(100))
+class v_games(db.Model):
+    id_game          = db.Column(db.Integer)
+    nm_game          = db.Column(db.String(100), primary_key=True)
+    nm_genre         = db.Column(db.String(100))
+    nr_criticscore   = db.Column(db.Integer)
+    dt_yearofrelease = db.Column(db.String(100))
 
 qtd_rows = pd.read_sql_query('SELECT * FROM v_games', conn)
 
