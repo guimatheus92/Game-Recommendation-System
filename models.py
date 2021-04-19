@@ -51,7 +51,7 @@ def gamesunplayed():
 
     #params = ("1", "1")    
     userid = current_user.id    
-    params = (str(userid), str(userid))
+    params = (str(userid), str(userid), str(userid))
 
     # Create dataframe
     df_gamesunplayed = pd.read_sql_query('''select
@@ -98,7 +98,7 @@ def gamesplayed():
 
     #params = ("1", "1")
     userid = current_user.id
-    params = (str(userid), str(userid))
+    params = (str(userid), str(userid), str(userid))
 
     # Create dataframe
     df_gamesplayed = pd.read_sql_query('''select
