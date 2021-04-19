@@ -18,7 +18,8 @@ games = Blueprint('games', __name__)
 def save_ml_models():
 	
 	df_gamesplayed = gamesplayed()
-
+	print(df_gamesplayed.head())
+	
 	# Features
 	features = pd.DataFrame(index=df_gamesplayed.index)
 	
