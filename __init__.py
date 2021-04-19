@@ -64,4 +64,6 @@ def create_app():
     from ml_utils import ml_utils as main_blueprint
     app.register_blueprint(main_blueprint)
  
-    return app
+    with app.app_context():
+        db.create_all()
+        return app
