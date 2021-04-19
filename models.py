@@ -32,14 +32,14 @@ class V_GAMES(db.Model):
     NR_CRITICSCORE = db.Column(db.Integer)
     DT_YEAROFRELEASE = db.Column(db.String(100))
 
-qtd_rows = pd.read_sql_query('SELECT * FROM v_games', conn)
+qtd_rows = pd.read_sql_query('SELECT * FROM "v_games"', conn)
 
 def check_gamesplayed():
     userid = current_user.id
     params = (str(userid))
     DATABASE_URL = os.environ['DATABASE_URL']
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-    df_checkgamesplayed = pd.read_sql_query('SELECT * FROM usergamesplayed WHERE id_user = %s', conn, params=params)
+    df_checkgamesplayed = pd.read_sql_query('SELECT * FROM "usergamesplayed" WHERE "id_user" = %s', conn, params=params)
     #df_checkgamesplayed = conn.execute("SELECT * FROM USERGAMESPLAYED WHERE ID_USER=:id",{"id": params}).fetchall()
     conn.close()
     return df_checkgamesplayed
@@ -56,7 +56,7 @@ def gamesunplayed():
 	nm_game || '-' || nm_publisher || '-' || nm_genre as important_features
 	from( 
 	select distinct
-	ifnull(f.id_user,%s) as id_user,
+	ifnull(f."id_user",%s) as id_user,
 	b.id_game,
 	b.nm_game,
 	max(e.nm_publisher) as nm_publisher,
@@ -66,8 +66,8 @@ def gamesunplayed():
 	max(a.nr_userscore) as nr_userscore,
 	min(d.dt_year) as dt_yearofrelease,
 	max(case
-	when f.ic_played = 'no'  then 0
-	when f.ic_played = 'yes' then 1
+	when f."ic_played" = 'no'  then 0
+	when f."ic_played" = 'yes' then 1
 	else 0
 	end) ic_played
 	from f_gamesbyplatform a 
@@ -79,9 +79,9 @@ def gamesunplayed():
 	on d.id_date = a.id_date
 	left join d_publisher e
 	on e.id_publisher = a.id_publisher
-	left join usergamesplayed f
-	on f.id_game = a.id_game
-	and f.id_user = %s
+	left join "usergamesplayed" f
+	on f."id_game" = a.id_game
+	and f."id_user" = %s
 	where b.linsource <> 'carga manual'
 	and d.dt_year > 0
 	group by b.id_game, b.nm_game) x
