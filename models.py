@@ -69,8 +69,8 @@ def gamesunplayed():
 	max(a.nr_userscore) as nr_userscore,
 	min(d.dt_year) as dt_yearofrelease,
 	max(case
-	when f."IC_PLAYED" = 'no'  then 0
-	when f."IC_PLAYED" = 'yes' then 1
+	when f."IC_PLAYED" = 'NO'  then 0
+	when f."IC_PLAYED" = 'YES' then 1
 	else 0
 	end) ic_played
 	from f_gamesbyplatform a 
@@ -116,8 +116,8 @@ def gamesplayed():
 	max(a.nr_userscore) as nr_userscore,
 	min(d.dt_year) as dt_yearofrelease,
 	max(case
-	when f."IC_PLAYED" = 'no'  then 0
-	when f."IC_PLAYED" = 'yes' then 1
+	when f."IC_PLAYED" = 'NO'  then 0
+	when f."IC_PLAYED" = 'YES' then 1
 	else 0
 	end) ic_played
 	from f_gamesbyplatform a 
