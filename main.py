@@ -120,8 +120,7 @@ def games(page_num):
 
                     subquery = db.session.query(USERGAMESPLAYED.NM_GAME).filter(USERGAMESPLAYED.ID_USER==current_user.id).subquery()
                     games = db.session.query(V_GAMES).filter(V_GAMES.NM_GAME.notin_(subquery)).paginate(per_page=len(qtd_rows), page=page_num, error_out=True)                                        
-                    flash('Games have been successfully added to your profile.')
-                    save_ml_models()
+                    flash('Games have been successfully added to your profile.')                    
                     return render_template('games.html', games=games, first_name=first_name, last_name=last_name)
 
             if not request.form.getlist('one_checkbox'):            
