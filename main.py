@@ -130,14 +130,12 @@ def games(page_num):
 
             if not request.form.getlist('one_checkbox'):            
                 flash('You have to check at least one game to add to your profile!')
-                subquery = db.session.query(USERGAMESPLAYED.NM_GAME).filter(USERGAMESPLAYED.ID_USER==current_user.id).subquery()
-                games = db.session.query(V_GAMES).filter(V_GAMES.NM_GAME.notin_(subquery)).paginate(per_page=len(qtd_rows), page=page_num, error_out=True) 
                 return render_template('games.html', games=games, first_name=first_name, last_name=last_name)
         
         return render_template('games.html', games=games, first_name=first_name, last_name=last_name)
     
     else:
-        games = V_GAMES.query.paginate(per_page=len(qtd_rows), page=page_num, error_out=True)
+        games = db.session.query(V_GAMES).paginate(per_page=len(qtd_rows), page=page_num, error_out=True)
         return render_template('games.html', games=games)    
 
 @main.errorhandler(404)
