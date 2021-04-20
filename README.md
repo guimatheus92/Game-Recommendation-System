@@ -94,7 +94,7 @@ This project utilizes the following requirements:
 ## Conclusion
 
 1. Want my code? [Grab it here](http://https://github.com/guimatheus92/Game-Recommendation-System "Grab it here") 📎
-2. Want the tutorial of how to use it? [Go to here](https://github.com/guimatheus92/Game-Recommendation-System/wiki/Tutorial-on-how-to-get-a-recommendation "Go to here") ✔️
+2. Want the tutorial of how to use it? [Go to Wiki](https://github.com/guimatheus92/Game-Recommendation-System/wiki/Tutorial-on-how-to-get-a-recommendation "Go to here") ✔️
 3. Check the article on [Medium](https://guimatheus92.medium.com/game-recommendation-system-using-machine-learning-and-flask-e0c2a3e0305b "Medium") about this development 📌
 4. View my app on [Heroku](https://recommendation-game-system.herokuapp.com/ "Heroku"). Cheers! 😊
 5. New ideas for this app? Help me to improve it ❤️
