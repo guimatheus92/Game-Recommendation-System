@@ -79,10 +79,10 @@ def profile(page_num):
             for id in request.form.getlist('delete_checkbox'):
 
                 # Delete the games that were checked and commit in the database
-                #USERGAMESPLAYED.query.filter_by(ID_GAME=id, ID_USER=current_user.id).delete(synchronize_session='fetch')                                    
-                conn.execute('DELETE FROM USERGAMESPLAYED WHERE NM_GAME = %s AND ID_USER = %s', (id, current_user.id))
-                conn.commit()
-                #db.session.commit()
+                USERGAMESPLAYED.query.filter_by(ID_GAME=id, ID_USER=current_user.id).delete(synchronize_session='fetch')                                    
+                #conn.execute('DELETE FROM USERGAMESPLAYED WHERE NM_GAME = %s AND ID_USER = %s', (id, current_user.id))
+                #conn.commit()
+                db.session.commit()
             
             recommendations_df = get_recommendation()                        
             return render_template('profile.html', name=current_user.name, profile=profile, first_name=first_name, last_name=last_name, len = len(recommendations_df), recommendations_profile=recommendations_df, disable=disable)
