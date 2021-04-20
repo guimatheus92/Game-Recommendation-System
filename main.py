@@ -81,7 +81,7 @@ def profile(page_num):
                 #USERGAMESPLAYED.query.filter_by(NM_GAME=id, ID_USER=current_user.id).delete(synchronize_session='fetch')                                    
                 cursor = conn.cursor()
                 cursor.execute('DELETE FROM "USERGAMESPLAYED" WHERE "NM_GAME" = %s AND "ID_USER" = %s', (id, current_user.id))
-                cursor.commit()
+                conn.commit()
                 #db.session.commit()
             recommendations_df = get_recommendation()
             profile = db.session.query(USERGAMESPLAYED.ID_USER, USERGAMESPLAYED.NM_GAME, V_GAMES.DT_YEAROFRELEASE, V_GAMES.NM_GENRE, V_GAMES.NR_CRITICSCORE).select_from(USERGAMESPLAYED).join(V_GAMES, V_GAMES.ID_GAME == USERGAMESPLAYED.ID_GAME).filter(USERGAMESPLAYED.ID_USER==current_user.id).paginate(per_page=len(qtd_rows), page=page_num, error_out=True)
