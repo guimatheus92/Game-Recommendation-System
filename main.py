@@ -130,6 +130,8 @@ def games(page_num):
         return render_template('games.html', games=games, first_name=first_name, last_name=last_name)
     
     else:
+        if request.method =='POST':
+            flash('You have to sign in to submit games to your profile!')  
         games = db.session.query(V_GAMES).paginate(per_page=len(qtd_rows), page=page_num, error_out=True)
         return render_template('games.html', games=games)    
 
