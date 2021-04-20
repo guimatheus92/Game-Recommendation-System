@@ -77,13 +77,12 @@ def profile(page_num):
     if request.method =='POST':
         if request.form.getlist('delete_checkbox'):            
             for id in request.form.getlist('delete_checkbox'):
-
                 # Delete the games that were checked and commit in the database
-                USERGAMESPLAYED.query.filter_by(NM_GAME=id, ID_USER=current_user.id).delete(synchronize_session='fetch')                                    
-                #conn.execute('DELETE FROM USERGAMESPLAYED WHERE NM_GAME = %s AND ID_USER = %s', (id, current_user.id))
-                #conn.commit()
-                db.session.commit()
-            
+                #USERGAMESPLAYED.query.filter_by(NM_GAME=id, ID_USER=current_user.id).delete(synchronize_session='fetch')                                    
+                cursor = conn.cursor()
+                cursor.execute('DELETE FROM USERGAMESPLAYED WHERE NM_GAME = %s AND ID_USER = %s', (id, current_user.id))
+                cursor.commit()
+                #db.session.commit()
             recommendations_df = get_recommendation()                        
             return render_template('profile.html', name=current_user.name, profile=profile, first_name=first_name, last_name=last_name, len = len(recommendations_df), recommendations_profile=recommendations_df, disable=disable)
             flash('Games have been successfully deleted from your profile.')
@@ -108,17 +107,13 @@ def games(page_num):
             if request.form.getlist('one_checkbox'):
                     for id in request.form.getlist('one_checkbox'):
                         game = V_GAMES.query.filter_by(NM_GAME=id).first()
-
                         ID_USER = current_user.id
                         ID_GAME = game.ID_GAME
                         NM_GAME = id
                         IC_PLAYED = "YES"
                         SYSDATE = datetime.datetime.now()
-
-                        # create new user with the form data. Hash the password so plaintext version isn't saved.
-                        addprofile = USERGAMESPLAYED(ID_USER=ID_USER, ID_GAME=ID_GAME, NM_GAME=NM_GAME, IC_PLAYED=IC_PLAYED, DT_PLAYED=SYSDATE)
-
-                        # add the new user to the database
+                        # add games to the profile
+                        addprofile = USERGAMESPLAYED(ID_USER=ID_USER, ID_GAME=ID_GAME, NM_GAME=NM_GAME, IC_PLAYED=IC_PLAYED, DT_PLAYED=SYSDATE)                        
                         db.session.add(addprofile)
                         db.session.commit()
 
