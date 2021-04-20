@@ -2,7 +2,7 @@
 
 from flask import Blueprint, render_template, request, flash, send_file, send_from_directory
 from flask_login import login_required, current_user
-from models import V_GAMES, USERGAMESPLAYED, qtd_rows, User, gamesunplayed, gamesplayed, check_gamesplayed
+from models import V_GAMES, USERGAMESPLAYED, qtd_rows, User, gamesunplayed, gamesplayed, check_gamesplayed, conn
 from __init__ import db
 from ml_utils import predict_api
 from games import save_ml_models
@@ -75,15 +75,17 @@ def profile(page_num):
         recommendations_df = get_recommendation()
 
     if request.method =='POST':
-        if request.form.getlist('delete_checkbox'):
-                for id in request.form.getlist('delete_checkbox'):
+        if request.form.getlist('delete_checkbox'):            
+            for id in request.form.getlist('delete_checkbox'):
 
-                    # Delete the games that were checked and commit in the database
-                    USERGAMESPLAYED.query.filter_by(NM_GAME=id, ID_USER=current_user.id).delete(synchronize_session='fetch')                                    
-                    db.session.commit()
-                
-                profile = USERGAMESPLAYED.query.paginate(per_page=len(qtd_rows), page=page_num, error_out=True)                
-                flash('Games have been successfully deleted from your profile.')
+                # Delete the games that were checked and commit in the database
+                #USERGAMESPLAYED.query.filter_by(ID_GAME=id, ID_USER=current_user.id).delete(synchronize_session='fetch')                                    
+                conn.execute('DELETE FROM USERGAMESPLAYED WHERE NM_GAME = %s AND ID_USER = %s', (id, current_user.id))
+                conn.commit()
+                #db.session.commit()
+                                    
+            return render_template('profile.html', name=current_user.name, profile=profile, first_name=first_name, last_name=last_name, len = len(recommendations_df), recommendations_profile=recommendations_df, disable=disable)
+            flash('Games have been successfully deleted from your profile.')
 
         if not request.form.getlist('delete_checkbox'):            
             flash('You have to check at least one game to delete from your profile!')
