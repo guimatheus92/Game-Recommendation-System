@@ -79,7 +79,7 @@ def profile(page_num):
             for id in request.form.getlist('delete_checkbox'):
 
                 # Delete the games that were checked and commit in the database
-                USERGAMESPLAYED.query.filter_by(ID_GAME=id, ID_USER=current_user.id).delete(synchronize_session='fetch')                                    
+                USERGAMESPLAYED.query.filter_by(NM_GAME=id, ID_USER=current_user.id).delete(synchronize_session='fetch')                                    
                 #conn.execute('DELETE FROM USERGAMESPLAYED WHERE NM_GAME = %s AND ID_USER = %s', (id, current_user.id))
                 #conn.commit()
                 db.session.commit()
