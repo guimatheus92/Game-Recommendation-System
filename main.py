@@ -90,6 +90,7 @@ def profile(page_num):
 
         if not request.form.getlist('delete_checkbox'):            
             flash('You have to check at least one game to delete from your profile!')
+            return render_template('profile.html', name=current_user.name, profile=profile, first_name=first_name, last_name=last_name, len = len(recommendations_df), recommendations_profile=recommendations_df, disable=disable)
     
     return render_template('profile.html', name=current_user.name, profile=profile, first_name=first_name, last_name=last_name, len = len(recommendations_df), recommendations_profile=recommendations_df, disable=disable)
 
@@ -129,6 +130,7 @@ def games(page_num):
 
             if not request.form.getlist('one_checkbox'):            
                 flash('You have to check at least one game to add to your profile!')
+                return render_template('games.html', games=games, first_name=first_name, last_name=last_name)
         
         return render_template('games.html', games=games, first_name=first_name, last_name=last_name)
     
