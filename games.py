@@ -6,8 +6,6 @@ from statistics import median
 import pandas as pd
 import numpy as np
 import os
-import sqlite3 as sql
-import joblib as jb
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy.sparse import hstack, vstack
