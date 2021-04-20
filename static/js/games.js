@@ -70,10 +70,6 @@ function submiton() {
     alert("You have to check at least one game to add to your profile!");
 }
 
-function submitoff() {
-    alert("You have to sign in to submit games to your profile!");
-}
-
 function qtd_checkbox() {
     var numberOfChecked = $('input:checkbox:checked').length;
     var numberNotChecked = $('input:checkbox:not(":checked")').length - 1;
