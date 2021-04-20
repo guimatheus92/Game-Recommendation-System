@@ -83,7 +83,8 @@ def profile(page_num):
                 conn.execute('DELETE FROM USERGAMESPLAYED WHERE NM_GAME = %s AND ID_USER = %s', (id, current_user.id))
                 conn.commit()
                 #db.session.commit()
-                                    
+            
+            recommendations_df = get_recommendation()                        
             return render_template('profile.html', name=current_user.name, profile=profile, first_name=first_name, last_name=last_name, len = len(recommendations_df), recommendations_profile=recommendations_df, disable=disable)
             flash('Games have been successfully deleted from your profile.')
 
