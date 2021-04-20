@@ -2,7 +2,6 @@
 
 from flask import Blueprint, render_template, request, flash, send_file, send_from_directory
 import pandas as pd
-import joblib as jb
 from scipy.sparse import hstack
 from models import gamesunplayed
 from games import save_ml_models
@@ -13,7 +12,7 @@ def predict_api():
 
     df_gamesunplayed = gamesunplayed()
     df_gamesunplayed.columns = map(lambda x: str(x).upper(), df_gamesunplayed.columns)
-    print("df_gamesplayed columns:" + str(sorted(df_gamesunplayed)))
+    #print("df_gamesplayed columns:" + str(sorted(df_gamesunplayed)))
 
     mdl_rf, mdl_lgbm, title_vec = save_ml_models() # Assign returned tuple
 
