@@ -57,7 +57,7 @@ This tutorial was last updated on April 15th, 2020:
 	- Decreased the amount of rows in some tables that was deployed on Heroku due to a limitation
 - **16/04/2021**:
 	- Created subfolders `js` and `css` inside `static` folder
-	- I entered the user's full name in the dropdown-menu
+	- I inserted the user's full name in the dropdown-menu
 - **15/04/2021**: Published the full project.
 
 ## Requirements
