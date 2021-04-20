@@ -83,7 +83,8 @@ def profile(page_num):
                 cursor.execute('DELETE FROM USERGAMESPLAYED WHERE NM_GAME = %s AND ID_USER = %s', (id, current_user.id))
                 cursor.commit()
                 #db.session.commit()
-            recommendations_df = get_recommendation()                        
+            recommendations_df = get_recommendation()
+            profile = db.session.query(USERGAMESPLAYED.ID_USER, USERGAMESPLAYED.NM_GAME, V_GAMES.DT_YEAROFRELEASE, V_GAMES.NM_GENRE, V_GAMES.NR_CRITICSCORE).select_from(USERGAMESPLAYED).join(V_GAMES, V_GAMES.ID_GAME == USERGAMESPLAYED.ID_GAME).filter(USERGAMESPLAYED.ID_USER==current_user.id).paginate(per_page=len(qtd_rows), page=page_num, error_out=True)
             return render_template('profile.html', name=current_user.name, profile=profile, first_name=first_name, last_name=last_name, len = len(recommendations_df), recommendations_profile=recommendations_df, disable=disable)
             flash('Games have been successfully deleted from your profile.')
 
