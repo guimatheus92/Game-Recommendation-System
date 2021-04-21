@@ -44,7 +44,7 @@ def check_gamesplayed():
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     #df_checkgamesplayed = pd.read_sql_query('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', conn, params=params)
     cursor = conn.cursor()
-    df_checkgamesplayed = cursor.execute('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', (current_user.id))
+    df_checkgamesplayed = cursor.execute('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', (str(current_user.id)))
     conn.close()
     return df_checkgamesplayed
 
