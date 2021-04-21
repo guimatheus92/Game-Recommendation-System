@@ -2,7 +2,7 @@
 
 from flask import Blueprint, render_template, request, flash, send_file, send_from_directory
 from flask_login import login_required, current_user
-from models import V_GAMES, USERGAMESPLAYED, qtd_rows, User, gamesunplayed, gamesplayed, conn
+from models import V_GAMES, USERGAMESPLAYED, qtd_rows, User, gamesunplayed, gamesplayed, conn, check_gamesplayed
 from __init__ import db
 from ml_utils import predict_api
 from games import save_ml_models
@@ -11,15 +11,6 @@ import pandas as pd
 import os
 
 main = Blueprint('main', __name__)
-
-def check_gamesplayed():
-    cursor = conn.cursor()
-    df_checkgamesplayed = pd.read_sql_query('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', conn, params=str(current_user.id))
-    #df_checkgamesplayed = cursor.execute('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', [str(current_user.id)])
-    print(pd.read_sql_query('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', conn, params=str(current_user.id)))
-    print(df_checkgamesplayed)
-    conn.close()
-    return df_checkgamesplayed
 
 def get_recommendation():
     df_gamesunplayed = gamesunplayed()
