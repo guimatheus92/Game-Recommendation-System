@@ -25,8 +25,12 @@ def get_recommendation():
 @main.route('/')
 def index():
     if current_user.is_authenticated:
-        first_name = current_user.name.rsplit(' ', 1)[0]
-        last_name = current_user.name.rsplit(' ', 1)[1]
+        if " " not in current_user.name:
+            first_name = current_user.name.rsplit(' ', 1)[0]
+            last_name = " "
+        else:
+            first_name = current_user.name.rsplit(' ', 1)[0]
+            last_name = current_user.name.rsplit(' ', 1)[1]
         return render_template('index.html', first_name=first_name, last_name=last_name)
     else:
         return render_template('index.html')
@@ -61,8 +65,12 @@ def donwloadprofile():
 def profile(page_num):    
     profile = db.session.query(USERGAMESPLAYED.ID_USER, USERGAMESPLAYED.NM_GAME, V_GAMES.DT_YEAROFRELEASE, V_GAMES.NM_GENRE, V_GAMES.NR_CRITICSCORE).select_from(USERGAMESPLAYED).join(V_GAMES, V_GAMES.ID_GAME == USERGAMESPLAYED.ID_GAME).filter(USERGAMESPLAYED.ID_USER==current_user.id).paginate(per_page=len(qtd_rows), page=page_num, error_out=True)    
 
-    first_name = current_user.name.rsplit(' ', 1)[0]
-    last_name = current_user.name.rsplit(' ', 1)[1]    
+    if " " not in current_user.name:
+        first_name = current_user.name.rsplit(' ', 1)[0]
+        last_name = " "
+    else:
+        first_name = current_user.name.rsplit(' ', 1)[0]
+        last_name = current_user.name.rsplit(' ', 1)[1]  
     
     df_checkgamesplayed = check_gamesplayed()        
 
@@ -101,8 +109,12 @@ def games(page_num):
         subquery = db.session.query(USERGAMESPLAYED.NM_GAME).filter(USERGAMESPLAYED.ID_USER==current_user.id).subquery()
         games = db.session.query(V_GAMES).filter(V_GAMES.NM_GAME.notin_(subquery)).paginate(per_page=len(qtd_rows), page=page_num, error_out=True)        
         
-        first_name = current_user.name.rsplit(' ', 1)[0]
-        last_name = current_user.name.rsplit(' ', 1)[1]
+        if " " not in current_user.name:
+            first_name = current_user.name.rsplit(' ', 1)[0]
+            last_name = " "
+        else:
+            first_name = current_user.name.rsplit(' ', 1)[0]
+            last_name = current_user.name.rsplit(' ', 1)[1]
 
         if request.method =='POST':
             if request.form.getlist('one_checkbox'):
