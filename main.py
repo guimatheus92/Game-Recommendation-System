@@ -13,8 +13,6 @@ import os
 main = Blueprint('main', __name__)
 
 def check_gamesplayed():
-    DATABASE_URL = os.environ['DATABASE_URL']
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = conn.cursor()
     df_checkgamesplayed = cursor.execute('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', [str(current_user.id)])
     print(cursor.execute('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', [str(current_user.id)]))
