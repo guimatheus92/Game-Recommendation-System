@@ -8,6 +8,7 @@ from ml_utils import predict_api
 from games import save_ml_models
 import datetime
 import pandas as pd
+import os
 
 main = Blueprint('main', __name__)
 
