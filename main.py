@@ -14,7 +14,7 @@ main = Blueprint('main', __name__)
 
 def check_gamesplayed():
     cursor = conn.cursor()
-    df_checkgamesplayed = pd.read_sql_query('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', conn, params=params)
+    df_checkgamesplayed = pd.read_sql_query('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', conn, params=str(current_user.id))
     #df_checkgamesplayed = cursor.execute('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', [str(current_user.id)])
     print(pd.read_sql_query('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', conn, params=str(current_user.id)))
     print(df_checkgamesplayed)
