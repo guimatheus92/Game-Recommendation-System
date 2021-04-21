@@ -45,6 +45,8 @@ def check_gamesplayed():
     #df_checkgamesplayed = pd.read_sql_query('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = ?', conn, params=params)
     cursor = conn.cursor()
     df_checkgamesplayed = cursor.execute('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', [str(current_user.id)])
+    cursor.execute('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', [str(current_user.id)])
+    print(df_checkgamesplayed)
     conn.close()
     return df_checkgamesplayed
 
