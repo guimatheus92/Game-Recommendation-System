@@ -2,15 +2,24 @@
 
 from flask import Blueprint, render_template, request, flash, send_file, send_from_directory
 from flask_login import login_required, current_user
-from models import V_GAMES, USERGAMESPLAYED, qtd_rows, User, gamesunplayed, gamesplayed, check_gamesplayed, conn
+from models import V_GAMES, USERGAMESPLAYED, qtd_rows, User, gamesunplayed, gamesplayed, conn
 from __init__ import db
 from ml_utils import predict_api
 from games import save_ml_models
 import datetime
 import pandas as pd
 
-
 main = Blueprint('main', __name__)
+
+def check_gamesplayed():
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+    df_checkgamesplayed = cursor.execute('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', [str(current_user.id)])
+    print(cursor.execute('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', [str(current_user.id)]))
+    print(df_checkgamesplayed)
+    conn.close()
+    return df_checkgamesplayed
 
 def get_recommendation():
     df_gamesunplayed = gamesunplayed()
