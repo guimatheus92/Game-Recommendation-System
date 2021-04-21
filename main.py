@@ -72,7 +72,8 @@ def profile(page_num):
         first_name = current_user.name.rsplit(' ', 1)[0]
         last_name = current_user.name.rsplit(' ', 1)[1]  
     
-    df_checkgamesplayed = check_gamesplayed()        
+    df_checkgamesplayed = check_gamesplayed()
+    print(df_checkgamesplayed)
 
     if df_checkgamesplayed is None:
         recommendations_df = pd.DataFrame()
