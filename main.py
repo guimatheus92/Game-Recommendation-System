@@ -39,7 +39,7 @@ def index():
 def donwloadrecommendation():
     if request.method =='GET':    
         df_checkgamesplayed = check_gamesplayed()         
-        if len(df_checkgamesplayed) == 0:
+        if len(df_checkgamesplayed) == 0 or df_checkgamesplayed = None:
             return None
         else:
             recommendations_df = get_recommendation()
@@ -51,7 +51,7 @@ def donwloadrecommendation():
 def donwloadprofile():
     if request.method =='GET':
         df_checkgamesplayed = check_gamesplayed()  
-        if len(df_checkgamesplayed) == 0:
+        if len(df_checkgamesplayed) == 0 or df_checkgamesplayed = None:
             return None
         else:            
             profile_table = db.session.query(USERGAMESPLAYED.ID_USER, USERGAMESPLAYED.NM_GAME, V_GAMES.DT_YEAROFRELEASE, V_GAMES.NM_GENRE, V_GAMES.NR_CRITICSCORE).select_from(USERGAMESPLAYED).join(V_GAMES, V_GAMES.ID_GAME == USERGAMESPLAYED.ID_GAME).filter(USERGAMESPLAYED.ID_USER==current_user.id)
@@ -74,7 +74,7 @@ def profile(page_num):
     
     df_checkgamesplayed = check_gamesplayed()        
 
-    if len(df_checkgamesplayed) == 0:
+    if len(df_checkgamesplayed) == 0 or df_checkgamesplayed = None:
         recommendations_df = pd.DataFrame()
         recommendations_df[["ID_USER", "ID_GAME", "NM_GAME", "NM_PUBLISHER", "NM_GENRE", "QT_GAMES", "NR_CRITICSCORE", "DT_YEAROFRELEASE", "IC_PLAYED", "Score"]] = ""
         disable = True
