@@ -30,11 +30,7 @@ def login_post():
 
     # if the above check passes, then we know the user has the right credentials
     login_user(user, remember=remember)
-    df_checkgamesplayed = check_gamesplayed()
-    if len(df_checkgamesplayed) > 0:
-        save_ml_models()
-    
-    return redirect(url_for('main.index'))
+    return redirect(url_for('main.profile'))
 
 @auth.route('/signup')
 def signup():
