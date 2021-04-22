@@ -25,8 +25,15 @@ def predict_api():
     vectorized_title = title_vec.transform(title)     
     feature_array = hstack([features, vectorized_title])
     
-    p_rf = mdl_rf.predict_proba(feature_array)[:, 1]
-    p_lgbm = mdl_lgbm.predict_proba(feature_array)[:, 1]
+    try:
+        p_rf = mdl_rf.predict_proba(feature_array)[:, 1]
+    excpt:
+        p_rf = 0
+
+    try:
+        p_lgbm = mdl_lgbm.predict_proba(feature_array)[:, 1]
+    except:
+        p_lgbm = 0
 
     p = 0.5*p_rf + 0.5*p_lgbm
 
