@@ -27,7 +27,7 @@ def predict_api():
     
     try:
         p_rf = mdl_rf.predict_proba(feature_array)[:, 1]
-    excpt:
+    except:
         p_rf = 0
 
     try:
