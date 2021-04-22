@@ -42,17 +42,12 @@ def check_gamesplayed():
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     df_checkgamesplayed = pd.read_sql_query('SELECT * FROM "USERGAMESPLAYED"', conn)
     df_checkgamesplayed.columns = map(lambda x: str(x).upper(), df_checkgamesplayed.columns)
-    df_checkgamesplayed.loc[df_checkgamesplayed['ID_USER'] == current_user.id]	
-#    cursor = conn.cursor()
-#    df_checkgamesplayed = cursor.execute('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', [str(current_user.id)])
-#    cursor.execute('SELECT * FROM "USERGAMESPLAYED" WHERE "ID_USER" = %s', [str(current_user.id)])
-    print(df_checkgamesplayed)
+    df_checkgamesplayed.loc[df_checkgamesplayed['ID_USER'] == current_user.id]
     conn.close()
     return df_checkgamesplayed
 
 def gamesunplayed():
-
-    #params = ("1", "1")    
+	
     userid = current_user.id    
     params = (str(userid), str(userid), str(userid))
 
@@ -96,13 +91,14 @@ def gamesunplayed():
 	group by b.id_game, b.nm_game, coalesce(f."ID_USER",%s)) x
 	where ic_played = 0''', conn, params = params)
 
+    print("df_gamesunplayed: " + df_gamesunplayed)
+
     conn.close()
 
     return df_gamesunplayed
 
 def gamesplayed():
 
-    #params = ("1", "1")
     userid = current_user.id
     params = (str(userid), str(userid), str(userid))
 
@@ -146,6 +142,7 @@ def gamesplayed():
 	group by b.id_game, b.nm_game, coalesce(f."ID_USER",%s)) x
     WHERE ic_played IS NOT NUll''', conn, params = params)
 
+    print("df_gamesplayed: " + df_gamesplayed)
     conn.close()
 
     return df_gamesplayed
