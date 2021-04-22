@@ -35,6 +35,16 @@ def predict_api():
     except:
         p_lgbm = [0] * feature_array.shape[0]
 
-    p = 0.5*p_rf + 0.5*p_lgbm
+    try:
+        one = 0.5*p_rf
+    except:
+        one = 0.5
+        
+    try:
+        two = 0.5*p_lgbm
+    except:
+        two = 0.5
+    
+    p = one + two
 
     return p
