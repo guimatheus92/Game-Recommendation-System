@@ -62,7 +62,10 @@ def save_ml_models():
 	mdl_lgbm = LGBMClassifier(learning_rate=lr, num_leaves=2 ** max_depth, max_depth=max_depth, min_child_samples=min_child_samples, subsample=subsample, colsample_bytree=colsample_bytree, bagging_freq=1,n_estimators=n_estimators, random_state=0, class_weight="balanced", n_jobs=6)
 	mdl_lgbm.fit(Xtrain_wtitle, ytrain)
 	
-	p_lgbm = mdl_lgbm.predict_proba(Xval_wtitle)[:, 1]
+	try:
+		p_lgbm = mdl_lgbm.predict_proba(Xval_wtitle)[:, 1]
+	except:
+		0
 	
 	from scipy.sparse import hstack, vstack
 	
@@ -73,6 +76,10 @@ def save_ml_models():
 	
 	mdl_rf = RandomForestClassifier(n_estimators=1000, random_state=0, min_samples_leaf=2, class_weight="balanced", n_jobs=6)
 	mdl_rf.fit(Xtrain_wtitle, ytrain)
-	p_rf = mdl_rf.predict_proba(Xval_wtitle)[:, 1]	
+
+	try:
+		p_rf = mdl_rf.predict_proba(Xval_wtitle)[:, 1]
+	except:
+		0	
 
 	return mdl_rf, mdl_lgbm, title_vec
