@@ -52,6 +52,7 @@ This tutorial was last updated on April 15th, 2020:
 
 - **21/04/2021**:
 	- Bug fixed when the user fill with only one name
+	- Bug fixed when the user deletes all games and keep one in profile
 - **19/04/2021**:
 	- Added the full name on the dropdown menu
 	- Changed the script to return the ML models variables instead of dump and load
