@@ -65,7 +65,7 @@ def save_ml_models():
 	try:
 		p_lgbm = mdl_lgbm.predict_proba(Xval_wtitle)[:, 1]
 	except:
-		0
+		p_lgbm = [0] * Xval_wtitle.shape[0]
 	
 	from scipy.sparse import hstack, vstack
 	
@@ -80,6 +80,6 @@ def save_ml_models():
 	try:
 		p_rf = mdl_rf.predict_proba(Xval_wtitle)[:, 1]
 	except:
-		0	
+		p_rf = [0] * Xval_wtitle.shape[0]
 
 	return mdl_rf, mdl_lgbm, title_vec
