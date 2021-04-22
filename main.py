@@ -38,8 +38,8 @@ def index():
 @main.route('/donwloadrecommendation', methods=('GET', 'POST'))
 def donwloadrecommendation():
     if request.method =='GET':    
-        df_checkgamesplayed = check_gamesplayed()         
-        if df_checkgamesplayed is None or len(df_checkgamesplayed) == 0:
+        df_profile = db.session.query(USERGAMESPLAYED.ID_USER, USERGAMESPLAYED.NM_GAME, V_GAMES.DT_YEAROFRELEASE, V_GAMES.NM_GENRE, V_GAMES.NR_CRITICSCORE).select_from(USERGAMESPLAYED).join(V_GAMES, V_GAMES.ID_GAME == USERGAMESPLAYED.ID_GAME).filter(USERGAMESPLAYED.ID_USER==current_user.id).count()
+        if df_checkgamesplayed is None or df_profile == 0:
             return None
         else:
             recommendations_df = get_recommendation()
@@ -50,8 +50,8 @@ def donwloadrecommendation():
 @main.route('/donwloadprofile', methods=('GET', 'POST'))
 def donwloadprofile():
     if request.method =='GET':
-        df_checkgamesplayed = check_gamesplayed()  
-        if df_checkgamesplayed is None or len(df_checkgamesplayed) == 0:
+        df_profile = db.session.query(USERGAMESPLAYED.ID_USER, USERGAMESPLAYED.NM_GAME, V_GAMES.DT_YEAROFRELEASE, V_GAMES.NM_GENRE, V_GAMES.NR_CRITICSCORE).select_from(USERGAMESPLAYED).join(V_GAMES, V_GAMES.ID_GAME == USERGAMESPLAYED.ID_GAME).filter(USERGAMESPLAYED.ID_USER==current_user.id).count()
+        if df_checkgamesplayed is None or df_profile == 0:
             return None
         else:            
             profile_table = db.session.query(USERGAMESPLAYED.ID_USER, USERGAMESPLAYED.NM_GAME, V_GAMES.DT_YEAROFRELEASE, V_GAMES.NM_GENRE, V_GAMES.NR_CRITICSCORE).select_from(USERGAMESPLAYED).join(V_GAMES, V_GAMES.ID_GAME == USERGAMESPLAYED.ID_GAME).filter(USERGAMESPLAYED.ID_USER==current_user.id)
@@ -64,7 +64,8 @@ def donwloadprofile():
 @login_required
 def profile(page_num):    
     profile = db.session.query(USERGAMESPLAYED.ID_USER, USERGAMESPLAYED.NM_GAME, V_GAMES.DT_YEAROFRELEASE, V_GAMES.NM_GENRE, V_GAMES.NR_CRITICSCORE).select_from(USERGAMESPLAYED).join(V_GAMES, V_GAMES.ID_GAME == USERGAMESPLAYED.ID_GAME).filter(USERGAMESPLAYED.ID_USER==current_user.id).paginate(per_page=len(qtd_rows), page=page_num, error_out=True)    
-
+    df_profile = db.session.query(USERGAMESPLAYED.ID_USER, USERGAMESPLAYED.NM_GAME, V_GAMES.DT_YEAROFRELEASE, V_GAMES.NM_GENRE, V_GAMES.NR_CRITICSCORE).select_from(USERGAMESPLAYED).join(V_GAMES, V_GAMES.ID_GAME == USERGAMESPLAYED.ID_GAME).filter(USERGAMESPLAYED.ID_USER==current_user.id).count()
+    
     if " " not in current_user.name:
         first_name = current_user.name.rsplit(' ', 1)[0]
         last_name = " "
@@ -75,7 +76,7 @@ def profile(page_num):
     df_checkgamesplayed = check_gamesplayed()
     print(df_checkgamesplayed)
 
-    if df_checkgamesplayed is None or len(df_checkgamesplayed) == 0:
+    if df_checkgamesplayed is None or df_profile == 0:
         recommendations_df = pd.DataFrame()
         recommendations_df[["ID_USER", "ID_GAME", "NM_GAME", "NM_PUBLISHER", "NM_GENRE", "QT_GAMES", "NR_CRITICSCORE", "DT_YEAROFRELEASE", "IC_PLAYED", "Score"]] = ""
         disable = True
