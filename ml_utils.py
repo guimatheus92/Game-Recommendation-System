@@ -28,12 +28,12 @@ def predict_api():
     try:
         p_rf = mdl_rf.predict_proba(feature_array)[:, 1]
     except:
-        p_rf = 0
+        p_rf = [0] * Xval_wtitle.shape[0]
 
     try:
         p_lgbm = mdl_lgbm.predict_proba(feature_array)[:, 1]
     except:
-        p_lgbm = 0
+        p_lgbm = [0] * Xval_wtitle.shape[0]
 
     p = 0.5*p_rf + 0.5*p_lgbm
 
