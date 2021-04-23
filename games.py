@@ -50,24 +50,13 @@ def save_ml_models():
 	mdl_lgbm = LGBMClassifier(random_state=0, class_weight="balanced", n_jobs=6)
 	mdl_lgbm.fit(Xtrain_wtitle, ytrain)
 	
-	try:
-		p_lgbm = mdl_lgbm.predict_proba(Xval_wtitle)[:, 1]
-	except:
-		p_lgbm = [0] * Xval_wtitle.shape[0]
-	
 	from scipy.sparse import hstack, vstack
 	
 	Xtrain_wtitle = hstack([Xtrain, title_bow_train])
 	Xval_wtitle = hstack([Xval, title_bow_val])
 	
-	# Random Forest
-	
+	# Random Forest	
 	mdl_rf = RandomForestClassifier(n_estimators=1000, random_state=0, min_samples_leaf=2, class_weight="balanced", n_jobs=6)
 	mdl_rf.fit(Xtrain_wtitle, ytrain)
-
-	try:
-		p_rf = mdl_rf.predict_proba(Xval_wtitle)[:, 1]
-	except:
-		p_rf = [0] * Xval_wtitle.shape[0]
 
 	return mdl_rf, mdl_lgbm, title_vec
