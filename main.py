@@ -74,8 +74,6 @@ def profile(page_num):
         last_name = current_user.name.rsplit(' ', 1)[1]  
     
     df_checkgamesplayed = check_gamesplayed()
-    print(df_checkgamesplayed)
-
     if df_checkgamesplayed is None or df_profile == 0:
         recommendations_df = pd.DataFrame()
         recommendations_df[["ID_USER", "ID_GAME", "NM_GAME", "NM_PUBLISHER", "NM_GENRE", "QT_GAMES", "NR_CRITICSCORE", "DT_YEAROFRELEASE", "IC_PLAYED", "Score"]] = ""
