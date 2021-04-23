@@ -60,44 +60,44 @@ def save_ml_models():
 	# Random Forest	
 	mdl_rf = RandomForestClassifier(n_estimators=1000, random_state=0, min_samples_leaf=2, class_weight="balanced", n_jobs=6)
 	mdl_rf.fit(Xtrain_wtitle, ytrain)
+
+    #--
+
+    df_gamesunplayed = gamesunplayed()
+    df_gamesunplayed.columns = map(lambda x: str(x).upper(), df_gamesunplayed.columns)
+    #print("df_gamesplayed columns:" + str(sorted(df_gamesunplayed)))
+
+    #mdl_rf, mdl_lgbm, title_vec = save_ml_models() # Assign returned tuple
+
+    title = df_gamesunplayed['IMPORTANT_FEATURES']
+
+    features = pd.DataFrame(index=df_gamesunplayed.index)
+    features['NR_CRITICSCORE'] = df_gamesunplayed["NR_CRITICSCORE"]
+    features['DT_YEAROFRELEASE'] = df_gamesunplayed["DT_YEAROFRELEASE"]
+
+    vectorized_title = title_vec.transform(title)     
+    feature_array = hstack([features, vectorized_title])
+
+    try:
+        p_rf = mdl_rf.predict_proba(feature_array)[:, 1]
+    except:
+        p_rf = [0] * feature_array.shape[0]
+
+    try:
+        p_lgbm = mdl_lgbm.predict_proba(feature_array)[:, 1]
+    except:
+        p_lgbm = [0] * feature_array.shape[0]
+
+    try:
+        one = 0.5*p_rf
+    except:
+        one = 0.5
     
-    	#--
-	
-    	df_gamesunplayed = gamesunplayed()
-    	df_gamesunplayed.columns = map(lambda x: str(x).upper(), df_gamesunplayed.columns)
-    	#print("df_gamesplayed columns:" + str(sorted(df_gamesunplayed)))
+    try:
+        two = 0.5*p_lgbm
+    except:
+        two = 0.5
 
-    	#mdl_rf, mdl_lgbm, title_vec = save_ml_models() # Assign returned tuple
+    p = one + two
 
-    	title = df_gamesunplayed['IMPORTANT_FEATURES']
-
-    	features = pd.DataFrame(index=df_gamesunplayed.index)
-    	features['NR_CRITICSCORE'] = df_gamesunplayed["NR_CRITICSCORE"]
-    	features['DT_YEAROFRELEASE'] = df_gamesunplayed["DT_YEAROFRELEASE"]
-
-    	vectorized_title = title_vec.transform(title)     
-    	feature_array = hstack([features, vectorized_title])
-    
-    	try:
-        	p_rf = mdl_rf.predict_proba(feature_array)[:, 1]
-    	except:
-        	p_rf = [0] * feature_array.shape[0]
-
-    	try:
-        	p_lgbm = mdl_lgbm.predict_proba(feature_array)[:, 1]
-    	except:
-        	p_lgbm = [0] * feature_array.shape[0]
-
-    	try:
-        	one = 0.5*p_rf
-    	except:
-        	one = 0.5
-        
-    	try:
-        	two = 0.5*p_lgbm
-    	except:
-        	two = 0.5
-    
-    	p = one + two
-
-    	return p
+    return p
