@@ -1,5 +1,3 @@
-#ml_utils.py
-
 from flask import Blueprint, render_template, request, flash, send_file, send_from_directory
 import pandas as pd
 from models import gamesunplayed
@@ -18,8 +16,8 @@ from lightgbm import LGBMClassifier
 games = Blueprint('games', __name__)
 
 def save_ml_models():
-
-	df_gamesplayed = gamesplayed()
+    
+    df_gamesplayed = gamesplayed()
 	df_gamesplayed.columns = map(lambda x: str(x).upper(), df_gamesplayed.columns)
 	print(sorted(df_gamesplayed))
 	
