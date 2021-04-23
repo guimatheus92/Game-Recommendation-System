@@ -91,7 +91,7 @@ def gamesunplayed():
 	group by b.id_game, b.nm_game, coalesce(f."ID_USER",%s)) x
 	where ic_played = 0''', conn, params = params)
 
-    print(df_gamesunplayed)
+    #print(df_gamesunplayed)
 
     conn.close()
 
@@ -142,7 +142,7 @@ def gamesplayed():
 	group by b.id_game, b.nm_game, coalesce(f."ID_USER",%s)) x
     WHERE ic_played IS NOT NUll''', conn, params = params)
 
-    print(df_gamesplayed)
+    #print(df_gamesplayed)
     conn.close()
 
     return df_gamesplayed
