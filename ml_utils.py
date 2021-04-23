@@ -1,3 +1,5 @@
+# ml_utils.py
+
 from flask import Blueprint, render_template, request, flash, send_file, send_from_directory
 import pandas as pd
 from models import gamesunplayed
@@ -12,8 +14,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy.sparse import hstack, vstack
 from lightgbm import LGBMClassifier
 
-
-games = Blueprint('games', __name__)
+ml_utils = Blueprint('ml_utils', __name__)
 
 def predict_api():
     
