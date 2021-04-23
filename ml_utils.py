@@ -15,7 +15,7 @@ from lightgbm import LGBMClassifier
 
 games = Blueprint('games', __name__)
 
-def save_ml_models():
+def predict_api():
     
     df_gamesplayed = gamesplayed()
     df_gamesplayed.columns = map(lambda x: str(x).upper(), df_gamesplayed.columns)
