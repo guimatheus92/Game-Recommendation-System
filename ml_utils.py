@@ -61,7 +61,7 @@ def save_ml_models():
 	mdl_rf = RandomForestClassifier(n_estimators=1000, random_state=0, min_samples_leaf=2, class_weight="balanced", n_jobs=6)
 	mdl_rf.fit(Xtrain_wtitle, ytrain)
     
-    # ------
+    	#--
 	
     	df_gamesunplayed = gamesunplayed()
     	df_gamesunplayed.columns = map(lambda x: str(x).upper(), df_gamesunplayed.columns)
